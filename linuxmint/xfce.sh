@@ -1,22 +1,68 @@
 #!/bin/sh
 
 # Install Google Chrome
-echo "Installing Google Chrome"
+echo "Installing Google Chrome..."
 mkdir -p $HOME/pkgtmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O $HOME/pkgtmp
 sudo dpkg -i $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
 sudo apt install -fy
 ln -s /usr/share/applications/google-chrome.desktop $HOME/Desktop/google-chrome.desktop
+xdg-settings set default-web-browser google-chrome.desktop
 rm $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
 echo "Google Chrome Installed"
 
 # Install OnlyOffice
-echo "Installing OnlyOffice as Microsoft Office replacement"
+echo "Installing OnlyOffice as Microsoft Office replacement..."
 wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -O $HOME/pkgtmp
 sudo dpkg -i $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
 sudo apt install -fy
-ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop\
+ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
+xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
 rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
+rmdir $HOME/pkgtmp/
 echo "OnlyOffice Installed"
 
-# Install Zoom Linux Client
+# Install spotify-client
+curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
+ln -s /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
+
+# Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
+echo "Installing VLC..."
+echo "Installing Microsoft fonts..."
+echo "Updating Mozilla Firefox..."
+echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox -y
+ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
+ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
+xdg-mime default vlc.desktop video/mp4
+xdg-mime default vlc.desktop video/x-matroska
+xdg-mime default vlc.desktop audio/mpeg
+xdg-mime default vlc.desktop video/hevc
+xdg-mime default vlc.desktop video/webm
+
+# Enable UFW, Profile default, Deny incoming, Allow outgoing
+echo "Enabling Firewall..."
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw enable
+sudo ufw status verbose
+
+# Enable DNS-Over-TLS with systemd-resolved, Primary server is cloudflare and secondary is google
+echo "Enabling Encrypted DNS..."
+sudo tee -a /etc/systemd/resolved.conf > /dev/null <<EOF
+DNS=1.1.1.1#cloudflare-dns.com
+FallbackDNS=8.8.8.8#dns.google
+DNSSEC=allow-downgrade
+DNSOverTLS=yes
+Domains=~.
+ReadEtcHosts=yes
+EOF
+sudo systemctl restart systemd-resolved
+sudo systemctl enable systemd-resolved 
+ 
+# Done Process
+echo "Welcome, Your Linux Mint XFCE is now ready for daily usage as Windows, but with less annoying and more private"
+echo "Don't forget to explore the Software Manager for more apps!"
+echo "And Update Manager to check for new update with NO forced updates or reboot"
