@@ -4,8 +4,7 @@
 echo "Installing Google Chrome..."
 mkdir -p $HOME/pkgtmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O $HOME/pkgtmp
-sudo dpkg -i $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
-sudo apt install -fy
+sudo apt install $HOME/pkgtmp/google-chrome-stable_current_amd64.deb -y
 ln -s /usr/share/applications/google-chrome.desktop $HOME/Desktop/google-chrome.desktop
 xdg-settings set default-web-browser google-chrome.desktop
 rm $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
@@ -14,8 +13,7 @@ echo "Google Chrome Installed"
 # Install OnlyOffice
 echo "Installing OnlyOffice as Microsoft Office replacement..."
 wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -O $HOME/pkgtmp
-sudo dpkg -i $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
-sudo apt install -fy
+sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
 ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
 xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
 rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
@@ -25,7 +23,7 @@ echo "OnlyOffice Installed"
 # Install spotify-client
 curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
+sudo apt-get update && sudo apt-get install spotify-client -y
 ln -s /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
@@ -59,8 +57,9 @@ DNSOverTLS=yes
 Domains=~.
 ReadEtcHosts=yes
 EOF
-sudo systemctl restart systemd-resolved
+
 sudo systemctl enable systemd-resolved 
+sudo systemctl restart systemd-resolved
  
 # Done Process
 echo "Welcome, Your Linux Mint XFCE is now ready for daily usage as Windows, but with less annoying and more private"
