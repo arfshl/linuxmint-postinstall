@@ -27,19 +27,26 @@ xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint.presentation.macroEnabled.12
 echo "OnlyOffice Installed"
 
-# Install spotify-client
+# Install spotify-client from flatpak
 flatpak install flathub com.spotify.Client -y
-cp /usr/share/applications/com.spotify.Client.desktop $HOME/Desktop/com.spotify.Client.desktop
+cp /var/lib/flatpak/exports/share/applications/com.spotify.Client.desktop $HOME/Desktop/com.spotify.Client.desktop
 chmod -R 755 $HOME/Desktop/
 
-# Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
+# Install VLC, systemd-resolved, ttf-mscorefonts, firefox, thunderbird
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
-sudo dnf install vlc systemd-resolved curl cabextract xorg-x11-font-utils fontconfig -y
+sudo dnf install vlc systemd-resolved curl cabextract xorg-x11-font-utils fontconfig cheese thunderbird -y
 sudo dnf install -y https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 cp /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
+cp /usr/share/applications/org.gnome.Shotwell.desktop $HOME/Desktop/org.gnome.Shotwell.desktop
 cp /usr/share/applications/org.mozilla.firefox.desktop $HOME/Desktop/org.mozilla.firefox.desktop
+cp /usr/share/applications/org.gnome.Software.desktop $HOME/Desktop/org.gnome.Software.desktop
+cp /usr/share/applications/net.thunderbird.Thunderbird.desktop $HOME/Desktop/net.thunderbird.Thunderbird.desktop
+cp /usr/share/applications/nemo.desktop $HOME/Desktop/nemo.desktop
+cp /usr/share/applications/org.gnome.Terminal.desktop $HOME/Desktop/org.gnome.Terminal.desktop
+cp /usr/share/applications/org.gnome.Calculator.desktop $HOME/Desktop/org.gnome.Calculator.desktop
+cp /usr/share/applications/org.gnome.Cheese.desktop $HOME/Desktop/org.gnome.Cheese.desktop
 chmod -R 755 $HOME/Desktop/
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
@@ -58,7 +65,7 @@ Domains=~.
 ReadEtcHosts=yes
 EOF
 sudo systemctl restart systemd-resolved
-sudo systemctl enable systemd-resolved 
+sudo systemctl enable systemd-resolved
  
 # Done Process
 echo "Welcome, Your Linux Mint XFCE is now ready for daily usage as Windows, but with less annoying and more private"
