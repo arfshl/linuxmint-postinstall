@@ -14,6 +14,17 @@ sudo dnf install https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/do
 cp /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
 chmod -R 755 $HOME/Desktop/
 xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document
+xdg-mime default onlyoffice-desktopeditors.desktop application/msword
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-word.document.macroEnabled.12
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel.sheet.macroEnabled.12
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel.sheet.binary.macroEnabled.12
+xdg-mime default onlyoffice-desktopeditors.desktop text/csv
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.presentationml.presentation
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint.presentation.macroEnabled.12
 echo "OnlyOffice Installed"
 
 # Install spotify-client
