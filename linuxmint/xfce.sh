@@ -44,6 +44,7 @@ echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
 sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox cheese -y
 ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
+ln -s /usr/share/applications/pix.desktop $HOME/Desktop/pix.desktop
 ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
 ln -s /usr/share/applications/mintinstall.desktop $HOME/Desktop/mintinstall.desktop
 ln -s /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
