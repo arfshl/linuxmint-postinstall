@@ -23,10 +23,18 @@ Post-install script that automates installation of daily driver apps and Microso
 
 Copy-paste this command on your terminal according to your distro
 
-- Linux Mint Cinnamon
+- Linux Mint Cinnamon/Linux Mint Debian Edition
+
+      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
 
 - Linux Mint MATE
+
+      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/mate.sh && sudo sh mate.sh && rm mate.sh
 
 - Linux Mint XFCE
 
       wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/xfce.sh && sudo sh xfce.sh && rm xfce.sh
+
+- Fedora Cinnamon Spin
+
+      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
