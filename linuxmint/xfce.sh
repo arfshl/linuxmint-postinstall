@@ -16,6 +16,17 @@ wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyo
 sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
 ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
 xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document
+xdg-mime default onlyoffice-desktopeditors.desktop application/msword
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-word.document.macroEnabled.12
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel.sheet.macroEnabled.12
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel.sheet.binary.macroEnabled.12
+xdg-mime default onlyoffice-desktopeditors.desktop text/csv
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.presentationml.presentation
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint.presentation.macroEnabled.12
 rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
 rmdir $HOME/pkgtmp/
 echo "OnlyOffice Installed"
@@ -26,14 +37,20 @@ echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/so
 sudo apt-get update && sudo apt-get install spotify-client -y
 ln -s /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
 
-# Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
+# Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts, firefox, cheese
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox -y
+sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox cheese -y
 ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
 ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
+ln -s /usr/share/applications/mintinstall.desktop $HOME/Desktop/mintinstall.desktop
+ln -s /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
+ln -s /usr/share/applications/thunar.desktop $HOME/Desktop/thunar.desktop
+ln -s /usr/share/applications/xfce4-terminal.desktop $HOME/Desktop/xfce4-terminal.desktop
+ln -s /usr/share/applications/org.gnome.Calculator.desktop $HOME/Desktop/org.gnome.Calculator.desktop
+ln -s /usr/share/applications/org.gnome.Cheese.desktop $HOME/Desktop/org.gnome.Cheese.desktop
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
