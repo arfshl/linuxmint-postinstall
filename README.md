@@ -11,9 +11,11 @@ Post-install script that automates installation of daily driver apps and Microso
 ## Auto-Installed Apps
 - Google Chrome
 - Mozilla Firefox
+- Thunderbird Email Client
 - [OnlyOffice](https://www.onlyoffice.com/download-desktop.aspx) as Microsoft Office replacement, but you can still access Office Online or Google Workspaces via web browser
 - VLC Media Player
 - Spotify Linux Client
+- GNOME Cheese (Camera App)
 
 ## Supported Distros
 - Linux Mint (All edition including LMDE)
