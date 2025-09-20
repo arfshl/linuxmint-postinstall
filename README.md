@@ -21,12 +21,6 @@ government environment
 - Spotify Linux Client
 - GNOME Cheese (Camera App)
 
-## Supported Distros
-- Linux Mint (All edition including LMDE)
-- Lubuntu
-- Fedora Cinnamon Spin
-- Fedora LXQt Spin
-
 ## Usage
 
 Here is supported Linux distribution and corresponding installation commands
@@ -45,26 +39,7 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
       wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/xfce.sh && sudo sh xfce.sh && rm xfce.sh
 
-- Lubuntu
-
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/ubuntu/lubuntu.sh && sudo sh lubuntu.sh && rm lubuntu.sh
-
-- Kubuntu
-
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/ubuntu/kubuntu.sh && sudo sh kubuntu.sh && rm kubuntu.sh
-
 - Fedora Cinnamon Spin
 
       wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
 
-- Fedora KDE
-
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/kde.sh && sudo sh kde.sh && rm kde.sh
-
-- Fedora LXQt Spin
-
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/lxqt.sh && sudo sh lxqt.sh && rm lxqt.sh
-
-- Fedora LXDE Spin
-
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/lxde.sh && sudo sh lxde.sh && rm lxde.sh
