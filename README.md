@@ -38,6 +38,14 @@ Copy-paste this command on your terminal according to your distro
 
       wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/xfce.sh && sudo sh xfce.sh && rm xfce.sh
 
+- Lubuntu
+
+      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/ubuntu/lxqt.sh && sudo sh lxqt.sh && rm lxqt.sh
+
 - Fedora Cinnamon Spin
 
       wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
+
+- Fedora LXQt Spin
+
+      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/lxqt.sh && sudo sh lxqt.sh && rm lxqt.sh
