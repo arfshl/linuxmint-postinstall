@@ -81,6 +81,7 @@ cp /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
 cp /usr/share/applications/pix.desktop $HOME/Desktop/pix.desktop
 cp /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
 cp /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
+cp /usr/share/applications/org.kde.discover.desktop $HOME/Desktop/org.kde.discover.desktop
 cp /usr/share/applications/qterminal.desktop $HOME/Desktop/qterminal.desktop
 cp /usr/share/applications/org.kde.kcalc.desktop $HOME/Desktop/org.kde.kcalc.desktop
 cp /usr/share/applications/org.kde.kamoso.desktop $HOME/Desktop/org.kde.kamoso.desktop
