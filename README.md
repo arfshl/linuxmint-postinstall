@@ -1,15 +1,10 @@
-# Linux for Home and Students
-
-Post-install script that automates installation of daily driver apps and Microsoft fonts, enables firewall, and configures encrypted DNS.
-
-Aims to make Linux distribution usage easier as free and open-source alternative for Windows and macOS, Both at personal computer or bigger deployment like education and
-government environment
+# Linux Mint Post-Install scripts
 
 ## Features
 - One-click installation, Just copy-paste command on Terminal
 - Automates installation of daily driver apps and Microsoft fonts
 - Adding App Shortcut to Desktop for easy access
-- Ensure that firewall is enabled (Using `ufw` on Debian/Ubuntu-based distribution and `firewalld` on Fedora)
+- Ensure that firewall is enabled
 - Setup DNS over TLS with systemd-resolved, using Cloudflare and Google DNS
 
 ## Auto-Installed Apps
@@ -38,8 +33,4 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 - Linux Mint XFCE
 
       wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/xfce.sh && sudo sh xfce.sh && rm xfce.sh
-
-- Fedora Cinnamon Spin
-
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/fedora/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
 
