@@ -2,6 +2,9 @@
 
 Post-install script that automates installation of daily driver apps and Microsoft fonts, enables firewall, and configures encrypted DNS.
 
+Aims to make Linux distribution usage easier as free and open-source alternative for Windows and macOS, Both at personal computer or bigger deployment like education and
+government environment
+
 ## Features
 - One-click installation, Just copy-paste command on Terminal
 - Automates installation of daily driver apps and Microsoft fonts
@@ -24,7 +27,9 @@ Post-install script that automates installation of daily driver apps and Microso
 
 ## Usage
 
-Copy-paste this command on your terminal according to your distro
+Here is supported Linux distribution and corresponding installation commands
+
+Just copy-paste the commands to your terminal and execute. The script will automatically downloaded and executed
 
 - Linux Mint Cinnamon/Linux Mint Debian Edition
 
