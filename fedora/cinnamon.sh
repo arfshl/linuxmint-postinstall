@@ -68,6 +68,6 @@ sudo systemctl restart systemd-resolved
 sudo systemctl enable systemd-resolved
  
 # Done Process
-echo "Welcome, Your Linux Mint XFCE is now ready for daily usage as Windows, but with less annoying and more private"
+echo "Welcome, Your Fedora Cinnamon is now ready for daily usage as Windows, but with less annoying and more private"
 echo "Don't forget to explore the Software Manager for more apps!"
 echo "And Update Manager to check for new update with NO forced updates or reboot"
