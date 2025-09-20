@@ -4,7 +4,8 @@ Post-install script that automates installation of daily driver apps and Microso
 
 ## Features
 - One-click installation, Just copy-paste command on Terminal
-- Automates daily driver apps and Microsoft fonts
+- Automates installation of daily driver apps and Microsoft fonts
+- Adding App Shortcut to Desktop for easy access
 - Ensure that firewall is enabled (Using `ufw` on Debian/Ubuntu-based distribution and `firewalld` on Fedora)
 - Setup DNS over TLS with systemd-resolved, using Cloudflare and Google DNS
 
