@@ -36,7 +36,7 @@ chmod -R 755 $HOME/Desktop/
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
-sudo dnf install vlc systemd-resolved curl cabextract xorg-x11-font-utils fontconfig kamoso firefox plasma-discover thunderbird kcalc gwenview -y
+sudo dnf install vlc systemd-resolved curl cabextract xorg-x11-font-utils fontconfig kamoso firefox plasma-discover thunderbird kcalc lximage-qt -y
 sudo dnf install -y https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 cp /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
 cp /usr/share/applications/org.kde.kamoso.desktop $HOME/Desktop/org.kde.kamoso.desktop
