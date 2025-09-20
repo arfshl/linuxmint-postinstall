@@ -23,7 +23,9 @@ government environment
 
 ## Supported Distros
 - Linux Mint (All edition including LMDE)
+- Lubuntu
 - Fedora Cinnamon Spin
+- Fedora LXQt Spin
 
 ## Usage
 
