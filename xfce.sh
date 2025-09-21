@@ -56,6 +56,7 @@ xdg-mime default vlc.desktop video/hevc
 xdg-mime default vlc.desktop video/webm
 xdg-mime default mate-terminal.desktop x-scheme-handler/terminal
 xdg-mime default nemo.desktop inode/directory
+sudo update-alternatives --install /usr/bin/gnome-terminal gnome-terminal /usr/bin/mate-terminal 50
 ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
 ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
 ln -s /usr/share/applications/mintinstall.desktop $HOME/Desktop/mintinstall.desktop
