@@ -25,9 +25,9 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
 - Linux Mint Cinnamon, Linux Mint MATE, and Linux Mint Debian Edition
 
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
 
 - Linux Mint XFCE
 
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/xfce.sh && sudo sh xfce.sh && rm xfce.sh
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/xfce.sh && sudo sh xfce.sh && rm xfce.sh
 
