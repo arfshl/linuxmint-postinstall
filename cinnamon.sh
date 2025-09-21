@@ -37,13 +37,16 @@ chmod -R 755 $HOME/Desktop/
 echo "OnlyOffice Installed"
 
 # Install spotify-client
+echo "Installing Spotify Client..."
 curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client -y
 cp /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
 chmod -R 755 $HOME/Desktop/
+echo "Spotify Client Installed"
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
+echo "Installing System Tools..."
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
@@ -66,6 +69,7 @@ cp /usr/share/applications/mate-terminal.desktop $HOME/Desktop/mate-terminal.des
 cp /usr/share/applications/org.gnome.clocks.desktop $HOME/Desktop/org.gnome.clocks.desktop
 cp /usr/share/applications/org.gnome.SystemMonitor.desktop $HOME/Desktop/org.gnome.SystemMonitor.desktop
 chmod -R 755 $HOME/Desktop/
+echo "System Tools Installed"
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
 echo "Enabling Firewall..."
