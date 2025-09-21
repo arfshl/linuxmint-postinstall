@@ -14,6 +14,7 @@
 - Spotify Linux Client
 - GNOME Cheese (Camera App)
 - GNOME Clocks
+- Microsoft Corefonts (with `ttf-mscorefonts-installer` packages)
 
 *And for ensuring seamless experience across flavors
 - GNOME System Monitor
