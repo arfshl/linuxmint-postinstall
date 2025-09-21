@@ -19,9 +19,6 @@
 - MATE Terminal (Allow tabbed Terminal session)
 
 ## Usage
-
-Here is supported Linux distribution and corresponding installation commands
-
 Just copy-paste the commands to your terminal and execute. The script will automatically downloaded and executed
 
 - Linux Mint Cinnamon, Linux Mint MATE, and Linux Mint Debian Edition
