@@ -65,9 +65,7 @@ cp /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
 cp /usr/share/applications/mintinstall.desktop $HOME/Desktop/mintinstall.desktop
 cp /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
 cp /usr/share/applications/nemo.desktop $HOME/Desktop/nemo.desktop
-cp /usr/share/applications/mate-terminal.desktop $HOME/Desktop/mate-terminal.desktop
 cp /usr/share/applications/org.gnome.clocks.desktop $HOME/Desktop/org.gnome.clocks.desktop
-cp /usr/share/applications/org.gnome.SystemMonitor.desktop $HOME/Desktop/org.gnome.SystemMonitor.desktop
 chmod -R 755 $HOME/Desktop/
 echo "System Tools Installed"
 
