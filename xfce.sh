@@ -6,7 +6,7 @@ sudo apt update && sudo apt upgrade -y
 # Install Google Chrome
 echo "Installing Google Chrome..."
 mkdir -p $HOME/pkgtmp
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O $HOME/pkgtmp
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P $HOME/pkgtmp
 sudo apt install $HOME/pkgtmp/google-chrome-stable_current_amd64.deb -y
 xdg-settings set default-web-browser google-chrome.desktop
 rm $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
@@ -15,7 +15,7 @@ echo "Google Chrome Installed"
 
 # Install OnlyOffice
 echo "Installing OnlyOffice as Microsoft Office replacement..."
-wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -O $HOME/pkgtmp
+wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -P $HOME/pkgtmp
 sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
 xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document
