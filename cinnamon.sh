@@ -51,7 +51,7 @@ echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox cheese nemo mate-terminal gnome-system-monitor gnome-clocks -y
+sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox cheese nemo gnome-terminal gnome-system-monitor gnome-clocks -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
@@ -59,16 +59,11 @@ xdg-mime default vlc.desktop video/hevc
 xdg-mime default vlc.desktop video/webm
 xdg-mime default mate-terminal.desktop x-scheme-handler/terminal
 xdg-mime default nemo.desktop inode/directory
-sudo update-alternatives --install /usr/bin/gnome-terminal gnome-terminal /usr/bin/mate-terminal 101
 cp /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
 cp /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
-cp /usr/share/applications/mintinstall.desktop $HOME/Desktop/mintinstall.desktop
 cp /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
 cp /usr/share/applications/nemo.desktop $HOME/Desktop/nemo.desktop
-cp /usr/share/applications/mate-terminal.desktop $HOME/Desktop/mate-terminal.desktop
-cp /usr/share/applications/org.gnome.clocks.desktop $HOME/Desktop/org.gnome.clocks.desktop
 chmod -R 755 $HOME/Desktop/
-cp /usr/share/applications/org.gnome.SystemMonitor.desktop $HOME/Desktop/org.gnome.SystemMonitor.desktop
 echo "System Tools Installed"
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
@@ -93,6 +88,4 @@ sudo systemctl enable systemd-resolved
 sudo systemctl restart systemd-resolved
  
 # Done Process
-echo "Welcome, Your Linux Mint is now ready for daily usage as Windows, but with less annoying and more private"
-echo "Don't forget to explore the Software Manager for more apps!"
-echo "And Update Manager to check for new update with NO forced updates or reboot"
+echo "Welcome to Linux Mint!"
