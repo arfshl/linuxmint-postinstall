@@ -14,7 +14,8 @@
 - Spotify Linux Client
 - GNOME Cheese (Camera App)
 - GNOME Clocks
-And for ensuring seamless experience across flavors
+
+*And for ensuring seamless experience across flavors
 - GNOME System Monitor
 - Nemo File Manager
 - MATE Terminal (Allow tabbed Terminal session)
