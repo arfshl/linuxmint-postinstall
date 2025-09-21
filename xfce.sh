@@ -11,7 +11,6 @@ sudo apt install $HOME/pkgtmp/google-chrome-stable_current_amd64.deb -y
 xdg-settings set default-web-browser google-chrome.desktop
 rm $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
 ln -s /usr/share/applications/google-chrome.desktop $HOME/Desktop/google-chrome.desktop
-
 echo "Google Chrome Installed"
 
 # Install OnlyOffice
@@ -33,17 +32,19 @@ xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
 rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
 rmdir $HOME/pkgtmp/
 ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
-
 echo "OnlyOffice Installed"
 
 # Install spotify-client
+echo "Installing Spotify Client..."
 curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client -y
-ln -s /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
-
+cp /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
+chmod -R 755 $HOME/Desktop/
+echo "Spotify Client Installed"
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
+echo "Installing System Tools..."
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
@@ -65,6 +66,7 @@ ln -s /usr/share/applications/nemo.desktop $HOME/Desktop/nemo.desktop
 ln -s /usr/share/applications/mate-terminal.desktop $HOME/Desktop/mate-terminal.desktop
 ln -s /usr/share/applications/org.gnome.clocks.desktop $HOME/Desktop/org.gnome.clocks.desktop
 ln -s /usr/share/applications/org.gnome.SystemMonitor.desktop $HOME/Desktop/org.gnome.SystemMonitor.desktop
+echo "System Tools Installed"
 
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
