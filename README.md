@@ -9,12 +9,13 @@
 
 ## Auto-Installed Apps
 - Google Chrome
-- Mozilla Firefox
-- Thunderbird Email Client
 - [OnlyOffice](https://www.onlyoffice.com/download-desktop.aspx) as Microsoft Office replacement, but you can still access Office Online or Google Workspaces via web browser
 - VLC Media Player
 - Spotify Linux Client
 - GNOME Cheese (Camera App)
+- GNOME Clocks
+- GNOME System Monitor
+- MATE Terminal (Allow tabbed Terminal session)
 
 ## Usage
 
@@ -22,13 +23,9 @@ Here is supported Linux distribution and corresponding installation commands
 
 Just copy-paste the commands to your terminal and execute. The script will automatically downloaded and executed
 
-- Linux Mint Cinnamon/Linux Mint Debian Edition
+- Linux Mint Cinnamon, Linux Mint MATE, and Linux Mint Debian Edition
 
       wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/cinnamon.sh && sudo sh cinnamon.sh && rm cinnamon.sh
-
-- Linux Mint MATE
-
-      wget https://raw.githubusercontent.com/arfshl/linux-home-and-student/refs/heads/main/linuxmint/mate.sh && sudo sh mate.sh && rm mate.sh
 
 - Linux Mint XFCE
 

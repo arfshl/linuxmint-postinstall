@@ -1,20 +1,23 @@
 #!/bin/sh
 
+# Updating base systems
+sudo apt update && sudo apt upgrade -y
+
 # Install Google Chrome
 echo "Installing Google Chrome..."
 mkdir -p $HOME/pkgtmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O $HOME/pkgtmp
 sudo apt install $HOME/pkgtmp/google-chrome-stable_current_amd64.deb -y
-ln -s /usr/share/applications/google-chrome.desktop $HOME/Desktop/google-chrome.desktop
 xdg-settings set default-web-browser google-chrome.desktop
 rm $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
+ln -s /usr/share/applications/google-chrome.desktop $HOME/Desktop/google-chrome.desktop
+
 echo "Google Chrome Installed"
 
 # Install OnlyOffice
 echo "Installing OnlyOffice as Microsoft Office replacement..."
 wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -O $HOME/pkgtmp
 sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
-ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
 xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document
 xdg-mime default onlyoffice-desktopeditors.desktop application/msword
@@ -29,6 +32,8 @@ xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint.presentation.macroEnabled.12
 rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
 rmdir $HOME/pkgtmp/
+ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
+
 echo "OnlyOffice Installed"
 
 # Install spotify-client
@@ -37,26 +42,29 @@ echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/so
 sudo apt-get update && sudo apt-get install spotify-client -y
 ln -s /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
 
-# Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts, firefox, cheese
+
+# Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox cheese -y
-ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
-ln -s /usr/share/applications/pix.desktop $HOME/Desktop/pix.desktop
-ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
-ln -s /usr/share/applications/mintinstall.desktop $HOME/Desktop/mintinstall.desktop
-ln -s /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
-ln -s /usr/share/applications/thunar.desktop $HOME/Desktop/thunar.desktop
-ln -s /usr/share/applications/xfce4-terminal.desktop $HOME/Desktop/xfce4-terminal.desktop
-ln -s /usr/share/applications/org.gnome.Calculator.desktop $HOME/Desktop/org.gnome.Calculator.desktop
-ln -s /usr/share/applications/org.gnome.Cheese.desktop $HOME/Desktop/org.gnome.Cheese.desktop
+sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox cheese nemo mate-terminal gnome-system-monitor gnome-clocks -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
 xdg-mime default vlc.desktop video/hevc
 xdg-mime default vlc.desktop video/webm
+xdg-mime default mate-terminal.desktop x-scheme-handler/terminal
+xdg-mime default nemo.desktop inode/directory
+ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
+ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
+ln -s /usr/share/applications/mintinstall.desktop $HOME/Desktop/mintinstall.desktop
+ln -s /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
+ln -s /usr/share/applications/nemo.desktop $HOME/Desktop/nemo.desktop
+ln -s /usr/share/applications/mate-terminal.desktop $HOME/Desktop/mate-terminal.desktop
+ln -s /usr/share/applications/org.gnome.clocks.desktop $HOME/Desktop/org.gnome.clocks.desktop
+ln -s /usr/share/applications/org.gnome.SystemMonitor.desktop $HOME/Desktop/org.gnome.SystemMonitor.desktop
+
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
 echo "Enabling Firewall..."
@@ -80,6 +88,6 @@ sudo systemctl enable systemd-resolved
 sudo systemctl restart systemd-resolved
  
 # Done Process
-echo "Welcome, Your Linux Mint XFCE is now ready for daily usage as Windows, but with less annoying and more private"
+echo "Welcome, Your Linux Mint is now ready for daily usage as Windows, but with less annoying and more private"
 echo "Don't forget to explore the Software Manager for more apps!"
 echo "And Update Manager to check for new update with NO forced updates or reboot"
