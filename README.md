@@ -15,6 +15,7 @@
 - GNOME Cheese (Camera App)
 - GNOME Clocks
 - GNOME System Monitor
+- Nemo File Manager
 - MATE Terminal (Allow tabbed Terminal session)
 
 ## Usage
