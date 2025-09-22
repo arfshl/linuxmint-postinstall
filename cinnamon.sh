@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Updating package database
+echo "Updating package database..."
+sudo apt update
+
 # Install Google Chrome
 echo "Installing Google Chrome..."
 mkdir -p $HOME/pkgtmp
