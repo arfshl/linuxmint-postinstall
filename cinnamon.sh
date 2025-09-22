@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Updating base systems
-sudo apt update && sudo apt upgrade -y
-
 # Install Google Chrome
 echo "Installing Google Chrome..."
 mkdir -p $HOME/pkgtmp
