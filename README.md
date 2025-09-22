@@ -16,11 +16,6 @@
 - GNOME Clocks
 - Microsoft Corefonts (with `ttf-mscorefonts-installer` packages)
 
-*And for ensuring seamless experience across flavors
-- GNOME System Monitor
-- Nemo File Manager
-- MATE Terminal (Allow tabbed Terminal session)
-
 ## Usage
 Just copy-paste the commands to your terminal and execute. The script will automatically downloaded and executed
 
