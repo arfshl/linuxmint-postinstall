@@ -14,6 +14,7 @@ echo "Google Chrome Installed"
 # Install OnlyOffice
 echo "Installing OnlyOffice as Microsoft Office replacement..."
 wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -P $HOME/pkgtmp
+echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
 sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
 xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document
