@@ -48,7 +48,7 @@ echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer ufw gufw systemd-resolved firefox cheese gnome-clocks -y
+sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
@@ -56,7 +56,6 @@ xdg-mime default vlc.desktop video/hevc
 xdg-mime default vlc.desktop video/webm
 cp /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
 cp /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
-cp /usr/share/applications/thunderbird.desktop $HOME/Desktop/thunderbird.desktop
 chmod -R 755 $HOME/Desktop/
 echo "System Tools Installed"
 
