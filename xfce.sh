@@ -57,7 +57,6 @@ xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
 xdg-mime default vlc.desktop video/hevc
 xdg-mime default vlc.desktop video/webm
-xdg-mime default mate-terminal.desktop x-scheme-handler/terminal
 xdg-mime default nemo.desktop inode/directory
 ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
 ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
