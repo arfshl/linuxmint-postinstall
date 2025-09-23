@@ -40,9 +40,7 @@ echo "OnlyOffice Installed"
 
 # Install spotify-client
 echo "Installing Spotify Client..."
-curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client -y
+sudo apt-get install spotify-client -y
 cp /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
 chmod -R 755 $HOME/Desktop/
 echo "Spotify Client Installed"
