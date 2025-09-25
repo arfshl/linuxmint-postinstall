@@ -27,3 +27,9 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
       wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/xfce.sh && sh xfce.sh && rm xfce.sh
 
+## VMware Tools
+
+If you installing Linux Mint on VMware, use this command to install the drivers
+
+      sudo apt install open-vm-tools-desktop -y
+
