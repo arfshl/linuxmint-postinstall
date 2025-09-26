@@ -51,8 +51,7 @@ echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks simplescreenrecorder zram-tools
- -y
+sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks simplescreenrecorder firefox -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
@@ -64,13 +63,18 @@ chmod -R 755 $HOME/Desktop/
 echo "System Tools Installed"
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
+echo "Updating Firewall..."
+sudo apt install ufw gufw -y
 echo "Enabling Firewall..."
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw enable
 sudo ufw status verbose
 
+
 # Enable DNS-Over-TLS with systemd-resolved, Primary server is cloudflare and secondary is google
+echo "Updating systemd-resolved..."
+sudo apt install systemd-resolved -y
 echo "Enabling Encrypted DNS..."
 sudo tee -a /etc/systemd/resolved.conf > /dev/null <<EOF
 DNS=1.1.1.1#cloudflare-dns.com
@@ -85,11 +89,13 @@ sudo systemctl enable systemd-resolved
 sudo systemctl restart systemd-resolved
 
 # Enable zram with lz4 compression algorithm
+echo "Installing zram-tools..."
+sudo apt install zram-tools -y
+echo "Enabling zram..."
 echo 'ALGO=lz4
 PERCENT=50' | sudo tee -a /etc/default/zramswap
 echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
- 
+
 # Done Process
 echo "Welcome to Linux Mint!"
 echo "To apply zram configuration, please reboot"
-
