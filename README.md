@@ -4,7 +4,8 @@
 - One-click installation, Just copy-paste command on Terminal
 - Automates installation of daily driver apps and Microsoft fonts
 - Adding App Shortcut to Desktop for easy access
-- Ensure that firewall is enabled
+- Enable Firewall
+- Enable [zram](https://wiki.archlinux.org/title/Zram)
 - Setup DNS over TLS with systemd-resolved, using Cloudflare and Google DNS
 
 ## Auto-Installed Apps

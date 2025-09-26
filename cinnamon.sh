@@ -51,7 +51,8 @@ echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks simplescreenrecorder -y
+sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks simplescreenrecorder zram-tools
+ -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
@@ -82,6 +83,13 @@ EOF
 
 sudo systemctl enable systemd-resolved 
 sudo systemctl restart systemd-resolved
+
+# Enable zram with lz4 compression algorithm
+echo 'ALGO=lz4
+PERCENT=50' | sudo tee -a /etc/default/zramswap
+echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
  
 # Done Process
 echo "Welcome to Linux Mint!"
+echo "To apply zram configuration, please reboot"
+
