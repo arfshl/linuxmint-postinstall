@@ -73,6 +73,8 @@ sudo ufw status verbose
 
 
 # Enable DNS-Over-TLS with systemd-resolved, Primary server is cloudflare and secondary is google
+echo "Updating systemd-resolved..."
+sudo apt install systemd-resolved -y
 echo "Enabling Encrypted DNS..."
 sudo tee -a /etc/systemd/resolved.conf > /dev/null <<EOF
 DNS=1.1.1.1#cloudflare-dns.com
