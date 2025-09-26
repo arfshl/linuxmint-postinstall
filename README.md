@@ -28,6 +28,10 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
       wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/xfce.sh && sh xfce.sh && rm xfce.sh
 
+## Enable swap manually if not enabled by default (4GB is default size)
+
+      sudo fallocate -l 4G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
 ## VMware Tools
 
 If you installing Linux Mint on VMware, use this command to install the drivers
