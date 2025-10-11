@@ -79,7 +79,6 @@ echo "Enabling Encrypted DNS..."
 sudo tee -a /etc/systemd/resolved.conf > /dev/null <<EOF
 DNS=1.1.1.1#cloudflare-dns.com
 FallbackDNS=8.8.8.8#dns.google
-DNSSEC=allow-downgrade
 DNSOverTLS=yes
 Domains=~.
 ReadEtcHosts=yes
