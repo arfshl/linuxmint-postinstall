@@ -3,6 +3,9 @@
 # env is mint xfce:
 wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/xfce.sh && sh xfce.sh && rm xfce.sh
 
+# install git
+sudo apt install git -y
+
 # install vscode
 sudo apt-get install wget gpg -y
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
