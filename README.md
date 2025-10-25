@@ -40,4 +40,4 @@ If you installing Linux Mint on VMware, use this command to install the drivers
 
 ## Personal custom install 
 
-I also included my personal custom install script [here](https://github.com/arfshl/linuxmint-postinstall/blob/main/personal.sh) including vscode, brave, and github-desktop
+I also included my personal custom install script [here](https://github.com/arfshl/linuxmint-postinstall/blob/main/personal.sh) including all things i need (vscode, brave, github desktop, git)
