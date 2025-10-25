@@ -35,7 +35,7 @@ Works on:
 - Zorin OS
 - Pop! OS
 - Linux Lite
-- MX Linux (Enable systemd first!)[https://mxlinux.org/wiki/system/systemd/]
+- MX Linux [Enable systemd first!](https://mxlinux.org/wiki/system/systemd/)
 - Elementary OS
 - KDE Neon
 - AnduinOS
