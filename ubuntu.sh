@@ -87,5 +87,5 @@ PERCENT=50' | sudo tee -a /etc/default/zramswap
 echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
 
 # Done Process
-echo "Welcome to Ubuntu!"
+echo "Welcome to Debian!"
 echo "To apply zram configuration, please reboot"
