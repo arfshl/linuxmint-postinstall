@@ -42,7 +42,7 @@ Works on:
 - Q4OS
 - And many more!
 
-      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu.sh && sh ubuntu.sh && rm ubuntu.sh
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian.sh && sh debian.sh && rm debian.sh
 
 ## Enable swap manually if not enabled by default (4GB is default size)
 
