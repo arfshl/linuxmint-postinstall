@@ -1,7 +1,6 @@
 #!/bin/sh
 # this is my personal customization for the applist
 # env is mint xfce:
-#!/bin/sh
 
 # Updating package database
 echo "Updating package database..."
