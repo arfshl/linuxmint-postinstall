@@ -6,6 +6,12 @@ wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/m
 # install git
 sudo apt install git -y
 
+# install htop, btop, and gnome system monitor
+sudo apt install htop btop gnome-system-monitor -y
+
+# install tor broswer launcher
+sudo apt install torbrowser-launcher -y
+
 # install vscode
 sudo apt-get install wget gpg -y
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
