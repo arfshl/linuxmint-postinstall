@@ -28,7 +28,7 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
       wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/xfce.sh && sh xfce.sh && rm xfce.sh
 
-## All Ubuntu-based distribution, but without shortcut to desktop
+## All Debian-based distribution, but without shortcut to desktop
 
 Works on:
 - All Ubuntu and Debian flavor and desktop
