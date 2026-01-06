@@ -77,7 +77,7 @@ echo "To apply zram configuration, please reboot"
 sudo apt install git -y
 
 # install htop, btop, and gnome system monitor
-sudo apt install htop btop gnome-system-monitor -y
+sudo apt install htop btop gnome-system-monitor gnome-disk-utility gdebi -y
 
 # install tor broswer launcher
 sudo apt install torbrowser-launcher -y
