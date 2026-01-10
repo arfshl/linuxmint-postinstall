@@ -6,43 +6,13 @@
 echo "Updating package database..."
 sudo apt update
 
-# Install OnlyOffice
-echo "Installing OnlyOffice as Microsoft Office replacement..."
-wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -P $HOME/pkgtmp
-echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
-xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document
-xdg-mime default onlyoffice-desktopeditors.desktop application/msword
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-word.document.macroEnabled.12
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel.sheet.macroEnabled.12
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-excel.sheet.binary.macroEnabled.12
-xdg-mime default onlyoffice-desktopeditors.desktop text/csv
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.presentationml.presentation
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
-xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint.presentation.macroEnabled.12
-rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
-rmdir $HOME/pkgtmp/
-ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
-chmod -R 755 $HOME/Desktop/
-echo "OnlyOffice Installed"
-
-# Install spotify-client
-echo "Installing Spotify Client..."
-sudo apt-get install spotify-client -y
-ln -s /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
-chmod -R 755 $HOME/Desktop/
-echo "Spotify Client Installed"
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
 echo "Installing System Tools..."
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
-echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer cheese gnome-system-monitor gnome-clocks simplescreenrecorder firefox -y
+sudo apt install vlc cheese gnome-system-monitor gnome-clocks simplescreenrecorder firefox -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
@@ -77,7 +47,7 @@ echo "To apply zram configuration, please reboot"
 sudo apt install git -y
 
 # install htop, btop, and gnome system monitor
-sudo apt install htop btop gnome-system-monitor gnome-disk-utility gdebi -y
+sudo apt install htop btop gnome-system-monitor gnome-disk-utility -y
 
 # install tor broswer launcher
 sudo apt install torbrowser-launcher -y
