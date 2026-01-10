@@ -1,6 +1,6 @@
 #!/bin/sh
 # this is my personal customization for the applist
-# env is mint xfce:
+# env is mint Cinnamon:
 
 # Updating package database
 echo "Updating package database..."
@@ -18,8 +18,6 @@ xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
 xdg-mime default vlc.desktop video/hevc
 xdg-mime default vlc.desktop video/webm
-ln -s /usr/share/applications/vlc.desktop $HOME/Desktop/vlc.desktop
-ln -s /usr/share/applications/firefox.desktop $HOME/Desktop/firefox.desktop
 chmod -R 755 $HOME/Desktop/
 echo "System Tools Installed"
 
@@ -51,6 +49,9 @@ sudo apt install htop btop gnome-system-monitor gnome-disk-utility -y
 
 # install tor broswer launcher
 sudo apt install torbrowser-launcher -y
+
+# install jre
+sudo apt install default-jre -y
 
 # install vscode
 sudo apt-get install wget gpg -y
