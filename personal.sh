@@ -6,19 +6,24 @@
 echo "Updating package database..."
 sudo apt update
 
+# remove unnecessary package
+sudo apt remove libreoffice* thunderbird firefox -y
+
+# install librewolf
+sudo apt update && sudo apt install extrepo -y
+sudo extrepo enable librewolf
+sudo apt update && sudo apt install librewolf -y
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
 echo "Installing System Tools..."
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
-echo "Updating Mozilla Firefox..."
-sudo apt install vlc cheese gnome-system-monitor gnome-clocks simplescreenrecorder firefox -y
+sudo apt install vlc cheese gnome-system-monitor gnome-clocks simplescreenrecorder -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
 xdg-mime default vlc.desktop video/hevc
 xdg-mime default vlc.desktop video/webm
-chmod -R 755 $HOME/Desktop/
 echo "System Tools Installed"
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
@@ -44,8 +49,8 @@ echo "To apply zram configuration, please reboot"
 # install git
 sudo apt install git -y
 
-# install htop, btop, and gnome system monitor
-sudo apt install htop btop gnome-system-monitor gnome-disk-utility -y
+# install htop, btop, brasero, and gnome system monitor
+sudo apt install htop btop gnome-system-monitor gnome-disk-utility brasero -y
 
 # install tor broswer launcher
 sudo apt install torbrowser-launcher -y
