@@ -21,7 +21,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "
 sudo dnf install code -y
 
 # remove
-sudo dnf remove thunderbird libreoffice* -y
+sudo dnf remove thunderbird libreoffice* firefox -y
 
 # allowport for localsend
 sudo firewall-cmd --permanent --add-port=53317/tcp
