@@ -9,11 +9,6 @@ sudo apt update
 # remove unnecessary package
 sudo apt remove libreoffice* thunderbird firefox -y
 
-# install librewolf
-sudo apt update && sudo apt install extrepo -y
-sudo extrepo enable librewolf
-sudo apt update && sudo apt install librewolf -y
-
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
 echo "Installing System Tools..."
 echo "Installing VLC..."
