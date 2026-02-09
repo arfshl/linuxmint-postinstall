@@ -1,8 +1,8 @@
 #!/bin/sh
-sudo apt install vlc zram-tools btop htop brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 simplescreenrecorder -y
+sudo apt install vlc zram-tools btop htop k3b default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 simplescreenrecorder -y
 timedatectl set-local-rtc 1
-sudo ./VM*
 sudo apt install ./*.deb
+
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
 echo "Updating Firewall..."
 sudo apt install ufw gufw -y
@@ -21,4 +21,4 @@ PERCENT=50' | sudo tee -a /etc/default/zramswap
 echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
 
 # remove unnecessary package
-sudo apt remove libreoffice* thunderbird firefox-esr gimp -y
+sudo apt remove libreoffice* thunderbird firefox-esr gimp konqueror -y
