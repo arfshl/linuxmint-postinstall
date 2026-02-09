@@ -54,6 +54,6 @@ If you installing on VMware, use this command to install the drivers
 
       sudo apt install open-vm-tools-desktop -y
 
-## Personal custom install 
+## Disable apt Pager at Debian 13 or Ubuntu 26.04
 
-I also included my personal custom install script [here](https://github.com/arfshl/linuxmint-postinstall/blob/main/personal.sh) including all things i need (vscode, brave, github desktop, git)
+      echo 'Binary::apt::Pager "false";' sudo tee -a  /etc/apt/apt.conf.d/99nopager
