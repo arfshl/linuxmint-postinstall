@@ -6,6 +6,12 @@
 # Install required tools
 sudo apt install vlc zram-tools btop htop k3b default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder -y
 
+# install protonvpn
+wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb && sudo dpkg -i ./protonvpn-stable-release_1.0.8_all.deb && sudo rm protonvpn-stable-release_1.0.8_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop
+
+# disable apt pager
+echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
+
 # Set local rtc clock, same with the system clock, for dualboot systems
 timedatectl set-local-rtc 1
 
