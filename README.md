@@ -57,3 +57,6 @@ If you installing on VMware, use this command to install the drivers
 ## Disable apt Pager at Debian 13 or Ubuntu 26.04
 
       echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
+
+# Personal Setup
+I also post my own setup script [here](https://github.com/arfshl/linuxmint-postinstall/tree/main/personal-use)
