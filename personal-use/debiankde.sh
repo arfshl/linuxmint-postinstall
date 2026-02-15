@@ -1,7 +1,48 @@
 #!/bin/sh
-sudo apt install vlc zram-tools btop htop k3b default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 simplescreenrecorder -y
+
+# env is debian based Linux
+# we take example of username is user
+
+# Install required tools
+sudo apt install vlc zram-tools btop htop k3b default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder -y
+
+# Set local rtc clock, same with the system clock, for dualboot systems
 timedatectl set-local-rtc 1
+
+# install all local .deb apps
+cd 
 sudo apt install ./*.deb
+
+# fix 'cant enumerate usb devices in virtualbox'
+sudo usermod -aG vboxusers user
+
+# install vmware-workstation
+sudo ./VM*
+
+# Set-Up Waterfox
+cd /home/user/waterfox
+sudo cp /home/user/waterfox/waterfox.desktop /usr/share/applications
+
+# Enable powertunnel services
+cd /home/user/PowerTunnel/
+sudo cp /home/user/PowerTunnel/powertunnel.service /etc/systemd/system/powertunnel.service
+sudo systemctl enable powertunnel
+sudo systemctl start powertunnel
+
+# Enable AdGuardHome
+cd /home/user/AdGuardHome
+sudo ./AdGuardHome -s install
+sudo systemctl start AdGuardHome
+
+# disable networkmanager management for /etc/resolv.conf
+sudo tee /etc/NetworkManager/conf.d/nodns.conf > /dev/null <<EOF
+[main]
+dns=none
+EOF
+
+# rewrite /etc/resolv.conf
+sudo rm /etc/resolv.conf
+echo 'nameserver 127.0.0.1' | sudo tee -a /etc/resolv.conf
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
 echo "Updating Firewall..."
