@@ -42,7 +42,7 @@ wind_speed = "kmh"
 precipitation = "mm"
 EOF
 
-# generate custom grub config (disable os-prober, block kvm module, and enable verbose boot, amoled black grub wallpaper}
+# generate custom grub config (disable os-prober, block kvm module, amoled black grub wallpaper, and enable verbose boot)
 cp /home/user/1.png /home/user/1.png
 sudo mv /etc/default/grub /etc/default/grub.bak
 sudo tee /etc/default/grub > /dev/null <<EOF
