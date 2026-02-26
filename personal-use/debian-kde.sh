@@ -3,13 +3,13 @@
 # env is debian based Linux
 
 # Install required tools
-sudo apt install vlc zram-tools btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup keepassxc -y
+sudo apt install vlc zram-tools btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup keepassxc linux-headers-$(uname -r) build-essential -y
 
 # install protonvpn
 wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_*_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
 
 # generate custom grub config (disable os-prober, block kvm module, amoled black grub wallpaper, and enable verbose boot)
-cp /home/user/Linux/Packages/1.png /home/user1.png
+cp /home/alif/D_DRIVE/Linux/Packages/1.png /home/alif/1.png
 sudo mv /etc/default/grub /etc/default/grub.bak
 sudo tee /etc/default/grub > /dev/null <<EOF
 GRUB_DEFAULT=0
@@ -18,7 +18,7 @@ GRUB_DISTRIBUTOR='Debian'
 #GRUB_CMDLINE_LINUX_DEFAULT='quiet splash'
 GRUB_CMDLINE_LINUX_DEFAULT='kvm.enable_virt_at_load=0'
 GRUB_CMDLINE_LINUX=""
-GRUB_BACKGROUND="/home/user1.png"
+GRUB_BACKGROUND="/home/alif/1.png"
 GRUB_DISABLE_OS_PROBER=false
 EOF
 sudo update-grub
@@ -30,33 +30,33 @@ echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 timedatectl set-local-rtc 1
 
 # install all local .deb apps
-cd /home/user/Linux/Packages/
+cd /home/alif/D_DRIVE/Linux/Packages/
 sudo apt install ./*.deb
 
 # fix 'cant enumerate usb devices in virtualbox'
-sudo usermod -aG vboxusers user
+sudo usermod -aG vboxusers alif
 
 # install vmware-workstation
 sudo ./VM*
 
 # Copy Applications folder to home
 cd
-cp -r /home/user/Linux/Applications /home/userApplications
+cp -r /home/alif/D_DRIVE/Linux/Applications /home/alif/Applications
 
 # Set-Up Waterfox
-cd /home/userApplications/waterfox
-sudo cp /home/userApplications/waterfox/waterfox.desktop /usr/share/applications
+cd /home/alif/Applications/waterfox
+sudo cp /home/alif/Applications/waterfox/waterfox.desktop /usr/share/applications
 
 # Enable powertunnel services
-cd /home/userApplications/PowerTunnel/
-sudo cp /home/userApplications/PowerTunnel/powertunnel.service /etc/systemd/system/powertunnel.service
+cd /home/alif/Applications/PowerTunnel/
+sudo cp /home/alif/Applications/PowerTunnel/powertunnel.service /etc/systemd/system/powertunnel.service
 sudo systemctl enable powertunnel
 sudo systemctl start powertunnel
 
 # Enable AdGuardHome
 sudo systemctl stop named
 sudo systemctl disable named
-cd /home/userApplications/AdGuardHome
+cd /home/alif/Applications/AdGuardHome
 sudo ./AdGuardHome -s install
 sudo systemctl start AdGuardHome
 
@@ -98,9 +98,9 @@ sudo apt purge libreoffice* thunderbird firefox-esr gimp konqueror juk dragonpla
 # install weathr rust app
 rustup toolchain install nightly
 cargo install weathr
-sudo ln -s /home/user.cargo/bin/weathr /usr/bin/weathr
-mkdir /home/user.config/weathr/
-tee /home/user.config/weathr/config.toml > /dev/null <<EOF
+sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr
+mkdir /home/alif/.config/weathr/
+tee /home/alif/.config/weathr/config.toml > /dev/null <<EOF
 # Hide the HUD (Heads Up Display) with weather details
 hide_hud = false
 
