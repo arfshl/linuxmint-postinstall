@@ -36,6 +36,17 @@ sudo apt install ./*.deb
 # fix 'cant enumerate usb devices in virtualbox'
 sudo usermod -aG vboxusers alif
 
+# add virtualbox repo
+#deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian <mydist> contrib
+wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg --dearmor
+sudo tee /etc/apt/sources.list.d/virtualbox.sources > /dev/null <<EOF
+Types: deb
+URIs: https://download.virtualbox.org/virtualbox/debian
+Suites: trixie
+Components: contrib
+Signed-By: /usr/share/keyrings/oracle-virtualbox-2016.gpg
+EOF
+
 # install vmware-workstation
 sudo ./VM*
 
