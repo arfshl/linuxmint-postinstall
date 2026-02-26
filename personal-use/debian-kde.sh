@@ -6,7 +6,7 @@
 sudo apt install vlc zram-tools btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup keepassxc -y
 
 # install protonvpn
-wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb && sudo dpkg -i ./protonvpn-stable-release_1.0.8_all.deb && sudo rm protonvpn-stable-release_1.0.8_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
+wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_*_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
 
 # generate custom grub config (disable os-prober, block kvm module, amoled black grub wallpaper, and enable verbose boot)
 cp /home/user/Linux/Packages/1.png /home/user1.png
@@ -93,7 +93,7 @@ echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
 sudo fallocate -l 4G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 # remove unnecessary package
-sudo apt remove libreoffice* thunderbird firefox-esr gimp konqueror -y
+sudo apt purge libreoffice* thunderbird firefox-esr gimp konqueror juk dragonplayer kmail akregator -y
 
 # install weathr rust app
 rustup toolchain install nightly
