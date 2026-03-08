@@ -106,6 +106,12 @@ sudo fallocate -l 4G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapf
 # remove unnecessary package
 sudo apt purge libreoffice* thunderbird firefox-esr gimp konqueror juk dragonplayer kmail akregator -y
 
+# Setup nodejs 24.x LTS
+sudo apt-get install -y curl
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v
+
 # install weathr rust app
 rustup toolchain install nightly
 cargo install weathr
