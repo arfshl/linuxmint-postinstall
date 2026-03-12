@@ -53,7 +53,7 @@ sudo apt install vlc zram-tools partitionmanager btop htop lynx brasero default-
 wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
 
 # generate custom grub config (disable os-prober, block kvm module, amoled black grub wallpaper, and enable verbose boot)
-cp /home/alif/D_DRIVE/Linux/Packages/1.png /home/alif/1.png
+cp /home/user/Linux/Packages/1.png /home/user/1.png
 sudo mv /etc/default/grub /etc/default/grub.bak
 sudo tee /etc/default/grub > /dev/null <<EOF
 GRUB_DEFAULT=0
@@ -73,7 +73,7 @@ echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 timedatectl set-local-rtc 1
 
 # install all local .deb apps
-cd /home/alif/D_DRIVE/Linux/Packages/
+cd /home/user/Linux/Packages/
 sudo apt install ./*.deb
 
 # fix 'cant enumerate usb devices in virtualbox'
@@ -96,11 +96,11 @@ sudo ./VM*
 
 # Copy Applications folder to home
 cd
-cp -r /home/alif/D_DRIVE/Linux/Applications /home/alif/Applications
+cp -r /home/user/Linux/Applications /home/user/Applications
 
 # Enable powertunnel services
-cd /home/alif/Applications/PowerTunnel/
-sudo cp /home/alif/Applications/PowerTunnel/powertunnel.service /etc/systemd/system/powertunnel.service
+cd /home/user/Applications/PowerTunnel/
+sudo cp /home/user/Applications/PowerTunnel/powertunnel.service /etc/systemd/system/powertunnel.service
 sudo systemctl enable powertunnel
 sudo systemctl start powertunnel
 
@@ -109,7 +109,7 @@ sudo systemctl stop named
 sudo systemctl disable named
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved
-cd /home/alif/Applications/AdGuardHome
+cd /home/user/Applications/AdGuardHome
 sudo ./AdGuardHome -s install
 sudo systemctl start AdGuardHome
 
@@ -157,9 +157,9 @@ node -v
 # install weathr rust app
 rustup toolchain install nightly
 cargo install weathr
-sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr
-mkdir /home/alif/.config/weathr/
-tee /home/alif/.config/weathr/config.toml > /dev/null <<EOF
+sudo ln -s /home/user/.cargo/bin/weathr /usr/bin/weathr
+mkdir /home/user/.config/weathr/
+tee /home/user/.config/weathr/config.toml > /dev/null <<EOF
 # Hide the HUD (Heads Up Display) with weather details
 hide_hud = false
 
@@ -168,8 +168,8 @@ silent = false
 
 [location]
 # Location coordinates (overridden if auto = true)
-latitude = -3.6486
-longitude = 103.771
+latitude = 
+longitude = 
 
 # Auto-detect location via IP (defaults to true if config missing)
 auto = false
