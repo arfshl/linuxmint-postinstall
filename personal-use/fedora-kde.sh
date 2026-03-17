@@ -52,7 +52,7 @@ sudo firewall-cmd --permanent --add-port=53317/udp
 sudo firewall-cmd --reload
 
 # install weathr rust app
-rustup toolchain install nightly
+rustup toolchain install stable
 cargo install weathr
 sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr
 mkdir /home/alif/.config/weathr/
