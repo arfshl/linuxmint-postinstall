@@ -2,11 +2,32 @@
 
 # env is debian based Linux
 
+# add latest firefox repo
+sudo install -d -m 0755 /etc/apt/keyrings
+sudo apt-get install wget -y
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+cat <<EOF | sudo tee /etc/apt/sources.list.d/mozilla.sources
+Types: deb
+URIs: https://packages.mozilla.org/apt
+Suites: mozilla
+Components: main
+Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
+EOF
+
+echo '
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+' | sudo tee /etc/apt/preferences.d/mozilla
+
+sudo apt update
+
+
 # Install required tools
-sudo apt install vlc zram-tools btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup keepassxc linux-headers-$(uname -r) build-essential -y
+sudo apt install vlc firefox keepassxc zram-tools partitionmanager btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup linux-headers-$(uname -r) build-essential libayatana-appindicator3-1 -y
 
 # install protonvpn
-wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_*_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
+wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
 
 # generate custom grub config (disable os-prober, block kvm module, amoled black grub wallpaper, and enable verbose boot)
 cp /home/alif/D_DRIVE/Linux/Packages/1.png /home/alif/1.png
@@ -33,19 +54,10 @@ timedatectl set-local-rtc 1
 cd /home/alif/D_DRIVE/Linux/Packages/
 sudo apt install ./*.deb
 
-# fix 'cant enumerate usb devices in virtualbox'
-sudo usermod -aG vboxusers alif
-
-# add virtualbox repo
-#deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian <mydist> contrib
-wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg --dearmor
-sudo tee /etc/apt/sources.list.d/virtualbox.sources > /dev/null <<EOF
-Types: deb
-URIs: https://download.virtualbox.org/virtualbox/debian
-Suites: trixie
-Components: contrib
-Signed-By: /usr/share/keyrings/oracle-virtualbox-2016.gpg
-EOF
+# add gh desktop repo
+sudo curl https://gpg.polrivero.com/public.key | sudo gpg --dearmor -o /usr/share/keyrings/polrivero.gpg
+echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/polrivero.gpg] https://deb.github-desktop.polrivero.com/ stable main" | sudo tee /etc/apt/sources.list.d/github-desktop-plus.list
+sudo apt install github-desktop-plus
 
 # install vmware-workstation
 sudo ./VM*
@@ -53,10 +65,6 @@ sudo ./VM*
 # Copy Applications folder to home
 cd
 cp -r /home/alif/D_DRIVE/Linux/Applications /home/alif/Applications
-
-# Set-Up Waterfox
-cd /home/alif/Applications/waterfox
-sudo cp /home/alif/Applications/waterfox/waterfox.desktop /usr/share/applications
 
 # Enable powertunnel services
 cd /home/alif/Applications/PowerTunnel/
@@ -67,7 +75,9 @@ sudo systemctl start powertunnel
 # Enable AdGuardHome
 sudo systemctl stop named
 sudo systemctl disable named
-cd /home/alif/Applications/AdGuardHome
+sudo systemctl stop systemd-resolved
+sudo systemctl disable systemd-resolved
+cd /home/alif/D_DRIVE/Applications/AdGuardHome
 sudo ./AdGuardHome -s install
 sudo systemctl start AdGuardHome
 
@@ -78,7 +88,7 @@ dns=none
 EOF
 
 # rewrite /etc/resolv.conf
-sudo rm /etc/resolv.conf
+sudo mv /etc/resolv.conf /etc/resolv.conf.bak
 echo 'nameserver 127.0.0.1' | sudo tee -a /etc/resolv.conf
 
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
@@ -101,10 +111,10 @@ PERCENT=50' | sudo tee -a /etc/default/zramswap
 echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
 
 # Enable swapfile with 4GB of size
-sudo fallocate -l 4G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo fallocate -l 4G /swapfile1 && sudo chmod 600 /swapfile1 && sudo mkswap /swapfile1 && sudo swapon /swapfile1 && echo '/swapfile1 none swap sw 0 0' | sudo tee -a /etc/fstab
 
 # remove unnecessary package
-sudo apt purge libreoffice* thunderbird firefox-esr gimp konqueror juk dragonplayer kmail akregator -y
+sudo apt purge libreoffice* thunderbird gimp konqueror juk dragonplayer kmail akregator -y
 
 # Setup nodejs 24.x LTS
 sudo apt-get install -y curl

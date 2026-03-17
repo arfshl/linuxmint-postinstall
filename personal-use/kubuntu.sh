@@ -1,10 +1,13 @@
 #!/bin/sh
 
 # env is ubuntu based Linux
+# do aftermount only
 
+# add latest firefox, thunderbird and keepassxc ppa
 sudo add-apt-repository ppa:mozillateam/ppa -y
 sudo add-apt-repository ppa:phoerious/keepassxc -y
 
+# no snap installation or enforcing
 echo 'Configuring APT Pinning...'
 sudo tee /etc/apt/preferences.d/nativeapt > /dev/null <<EOF
 Package: *
@@ -42,25 +45,30 @@ Pin-Priority: -1
 Package: chromium-browser
 Pin: release o=Ubuntu
 Pin-Priority: -1
+
+Package: snapd
+Pin: release o=Ubuntu
+Pin-Priority: -1
 EOF
 
 echo 'Done'
 
 # Install required tools
-sudo apt install vlc zram-tools partitionmanager btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup linux-headers-$(uname -r) build-essential libayatana-appindicator3-1 -y
+sudo apt install vlc firefox keepassxc zram-tools partitionmanager btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup linux-headers-$(uname -r) build-essential libayatana-appindicator3-1 -y
 
 # install protonvpn
 wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
 
 # generate custom grub config (disable os-prober, block kvm module, amoled black grub wallpaper, and enable verbose boot)
-cp /home/user/Linux/Packages/1.png /home/user/1.png
+# cp /home/alif/D_DRIVE/Linux/Packages/1.png /home/alif/1.png
 sudo mv /etc/default/grub /etc/default/grub.bak
 sudo tee /etc/default/grub > /dev/null <<EOF
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=-1
 GRUB_DISTRIBUTOR='Kubuntu'
 #GRUB_CMDLINE_LINUX_DEFAULT='quiet splash'
-GRUB_CMDLINE_LINUX_DEFAULT='kvm.enable_virt_at_load=0'
+#GRUB_CMDLINE_LINUX_DEFAULT='kvm.enable_virt_at_load=0'
+GRUB_CMDLINE_LINUX_DEFAULT=''
 GRUB_CMDLINE_LINUX=""
 GRUB_DISABLE_OS_PROBER=false
 EOF
@@ -73,22 +81,12 @@ echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 timedatectl set-local-rtc 1
 
 # install all local .deb apps
-cd /home/user/Linux/Packages/
+cd /home/alif/D_DRIVE/Linux/Packages/
 sudo apt install ./*.deb
-
-# fix 'cant enumerate usb devices in virtualbox'
-sudo usermod -aG vboxusers alif
-
-# add virtualbox repo
-#deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian <mydist> contrib
-wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg --dearmor
-sudo tee /etc/apt/sources.list.d/virtualbox.list > /dev/null <<EOF
-deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian noble contrib
-EOF
 
 # add gh desktop repo
 sudo curl https://gpg.polrivero.com/public.key | sudo gpg --dearmor -o /usr/share/keyrings/polrivero.gpg
-echo "deb [signed-by=/usr/share/keyrings/polrivero.gpg] https://deb.github-desktop.polrivero.com/ stable main" | sudo tee /etc/apt/sources.list.d/github-desktop-plus.list
+echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/polrivero.gpg] https://deb.github-desktop.polrivero.com/ stable main" | sudo tee /etc/apt/sources.list.d/github-desktop-plus.list
 sudo apt install github-desktop-plus
 
 # install vmware-workstation
@@ -96,11 +94,11 @@ sudo ./VM*
 
 # Copy Applications folder to home
 cd
-cp -r /home/user/Linux/Applications /home/user/Applications
+cp -r /home/alif/D_DRIVE/Linux/Applications /home/alif/Applications
 
 # Enable powertunnel services
-cd /home/user/Applications/PowerTunnel/
-sudo cp /home/user/Applications/PowerTunnel/powertunnel.service /etc/systemd/system/powertunnel.service
+cd /home/alif/Applications/PowerTunnel/
+sudo cp /home/alif/Applications/PowerTunnel/powertunnel.service /etc/systemd/system/powertunnel.service
 sudo systemctl enable powertunnel
 sudo systemctl start powertunnel
 
@@ -109,7 +107,7 @@ sudo systemctl stop named
 sudo systemctl disable named
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved
-cd /home/user/Applications/AdGuardHome
+cd /home/alif/D_DRIVE/Applications/AdGuardHome
 sudo ./AdGuardHome -s install
 sudo systemctl start AdGuardHome
 
@@ -143,7 +141,7 @@ PERCENT=50' | sudo tee -a /etc/default/zramswap
 echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
 
 # Enable swapfile with 4GB of size
-sudo fallocate -l 4G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo fallocate -l 4G /swapfile1 && sudo chmod 600 /swapfile1 && sudo mkswap /swapfile1 && sudo swapon /swapfile1 && echo '/swapfile1 none swap sw 0 0' | sudo tee -a /etc/fstab
 
 # remove unnecessary package
 sudo apt purge libreoffice* thunderbird gimp konqueror juk dragonplayer kmail akregator -y
@@ -157,9 +155,9 @@ node -v
 # install weathr rust app
 rustup toolchain install nightly
 cargo install weathr
-sudo ln -s /home/user/.cargo/bin/weathr /usr/bin/weathr
-mkdir /home/user/.config/weathr/
-tee /home/user/.config/weathr/config.toml > /dev/null <<EOF
+sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr
+mkdir /home/alif/.config/weathr/
+tee /home/alif/.config/weathr/config.toml > /dev/null <<EOF
 # Hide the HUD (Heads Up Display) with weather details
 hide_hud = false
 
@@ -168,8 +166,8 @@ silent = false
 
 [location]
 # Location coordinates (overridden if auto = true)
-latitude = 
-longitude = 
+latitude = -3.6486
+longitude = 103.771
 
 # Auto-detect location via IP (defaults to true if config missing)
 auto = false
