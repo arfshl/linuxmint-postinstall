@@ -8,6 +8,9 @@ curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 # install package
 sudo apt install nodejs rustup build-essential wget nano curl lynx git 
 
+# install http server
+npm install -g http-server
+
 # disable apt pager
 echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 
@@ -15,7 +18,7 @@ echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 rustup toolchain install stable
 cargo install weathr
 sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr
-mkdir /home/alif/.config/weathr/
+mkdir -p /home/alif/.config/weathr/
 tee /home/alif/.config/weathr/config.toml > /dev/null <<EOF
 # Hide the HUD (Heads Up Display) with weather details
 hide_hud = false

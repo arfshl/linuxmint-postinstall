@@ -17,6 +17,7 @@ sudo dnf install -y curl
 curl -fsSL https://rpm.nodesource.com/setup_24.x | sudo bash -
 sudo dnf install -y nodejs
 node -v
+npm install -g http-server
 
 # install protonvpn
 wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.3-1.noarch.rpm" && sudo dnf install ./protonvpn-stable-release-1.0.3-1.noarch.rpm && sudo dnf check-update --refresh  && sudo dnf install proton-vpn-gnome-desktop 
@@ -55,7 +56,7 @@ sudo firewall-cmd --reload
 rustup toolchain install stable
 cargo install weathr
 sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr
-mkdir /home/alif/.config/weathr/
+mkdir -p /home/alif/.config/weathr/
 tee /home/alif/.config/weathr/config.toml > /dev/null <<EOF
 # Hide the HUD (Heads Up Display) with weather details
 hide_hud = false
