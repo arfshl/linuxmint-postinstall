@@ -54,7 +54,7 @@ Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
 EOF
 
-sudo cat <<EOF > /etc/apt/preferences.d/mozilla
+cat <<EOF | sudo tee /etc/apt/preferences.d/mozilla
 Package: *
 Pin: origin packages.mozilla.org
 Pin-Priority: 1000
