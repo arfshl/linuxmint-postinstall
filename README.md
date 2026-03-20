@@ -28,6 +28,10 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
       wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/xfce.sh && sh xfce.sh && rm xfce.sh
 
+- Kubuntu or Debian KDE, with snapd disabled and comfy tools (if you want Linux mint feelings with KDE Plasma desktop)
+
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/minty-kde.sh && sh minty-kde.sh && rm minty-kde.sh
+
 ## All Debian-based distribution, but without shortcut to desktop
 
 Works on:
