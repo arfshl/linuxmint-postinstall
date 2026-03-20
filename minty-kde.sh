@@ -12,8 +12,7 @@ wget https://github.com/arfshl/no-snap-on-apt/raw/main/nosnap.sh && sudo sh nosn
 
 # configuring thunderbird deb for Kubuntu
 sudo add-apt-repository ppa:mozillateam/ppa -y
-sudo cat <<EOF > /etc/apt/preferences.d/thunderbird
-
+cat <<EOF | sudo tee /etc/apt/preferences.d/thunderbird
 Package: thunderbird
 Pin: release o=Ubuntu
 Pin-Priority: -1
@@ -74,7 +73,13 @@ URIs: https://packages.mozilla.org/apt
 Suites: mozilla
 Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
-EOF 
+EOF
+
+sudo cat <<EOF > /etc/apt/preferences.d/mozilla
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+EOF
 
 sudo apt update
 echo "Installing System Tools..."

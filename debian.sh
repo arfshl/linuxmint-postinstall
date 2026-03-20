@@ -52,7 +52,13 @@ URIs: https://packages.mozilla.org/apt
 Suites: mozilla
 Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
-EOF 
+EOF
+
+sudo cat <<EOF > /etc/apt/preferences.d/mozilla
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+EOF
 
 sudo apt update
 echo "Installing System Tools..."
