@@ -16,10 +16,6 @@ cat <<EOF | sudo tee /etc/apt/preferences.d/thunderbird
 Package: thunderbird
 Pin: release o=Ubuntu
 Pin-Priority: -1
-
-Package: thunderbird
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1000
 EOF
 
 echo "Updating package database..."
