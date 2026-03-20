@@ -51,7 +51,7 @@ echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer cheese gnome-system-monitor gnome-clocks simplescreenrecorder firefox -y
+sudo apt install vlc ttf-mscorefonts-installer cheese gnome-system-monitor gnome-clocks firefox -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
@@ -94,6 +94,9 @@ echo "Enabling zram..."
 echo 'ALGO=lz4
 PERCENT=50' | sudo tee -a /etc/default/zramswap
 echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
+
+# Disable apt Pager at Debian 13 or Ubuntu 26.04
+echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 
 # Done Process
 echo "Welcome to Linux Mint!"

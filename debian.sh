@@ -36,17 +36,31 @@ echo "OnlyOffice Installed"
 
 # Install spotify-client
 echo "Installing Spotify Client..."
+curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get install spotify-client -y
 cp /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
 chmod -R 755 $HOME/Desktop/
 echo "Spotify Client Installed"
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
+echo "installing firefox..."
+sudo install -d -m 0755 /etc/apt/keyrings
+cat <<EOF | sudo tee /etc/apt/sources.list.d/mozilla.sources
+Types: deb
+URIs: https://packages.mozilla.org/apt
+Suites: mozilla
+Components: main
+Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
+EOF 
+
+sudo apt update
 echo "Installing System Tools..."
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks simplescreenrecorder mtp-tools -y
+sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks mtp-tools firefox -y
+sudo apt purge firefox-esr -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
@@ -85,6 +99,9 @@ echo "Enabling zram..."
 echo 'ALGO=lz4
 PERCENT=50' | sudo tee -a /etc/default/zramswap
 echo 'vm.page-cluster = 0' | sudo tee -a /etc/sysctl.conf
+
+# Disable apt Pager at Debian 13 or Ubuntu 26.04
+echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 
 # Done Process
 echo "Welcome to Debian!"
