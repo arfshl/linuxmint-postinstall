@@ -1,14 +1,19 @@
 #!/bin/sh
 
-# add nodejs repository
-#Setup nodejs 24.x LTS
-sudo apt-get install -y curl
-curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+## Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 
-# install package
-sudo apt install nodejs rustup build-essential wget nano curl lynx git 
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
 
-# install http server
+# Download and install Node.js:
+nvm install --lts
+
+# Verify the Node.js version:
+node -v # Should print "v24.14.1".
+
+# Verify npm version:
+npm -v # Should print "11.11.0".
 npm install -g http-server
 
 # disable apt pager

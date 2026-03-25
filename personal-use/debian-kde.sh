@@ -116,11 +116,22 @@ sudo fallocate -l 4G /swapfile1 && sudo chmod 600 /swapfile1 && sudo mkswap /swa
 # remove unnecessary package
 sudo apt purge libreoffice* thunderbird gimp konqueror juk dragonplayer kmail akregator -y
 
-# Setup nodejs 24.x LTS
-sudo apt-get install -y curl
-curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-sudo apt-get install -y nodejs
-node -v
+# install nodejs lts
+
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+
+# Download and install Node.js:
+nvm install --lts
+
+# Verify the Node.js version:
+node -v # Should print "v24.14.1".
+
+# Verify npm version:
+npm -v # Should print "11.11.0".
 npm install -g http-server
 
 # install weathr rust app
