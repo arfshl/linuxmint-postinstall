@@ -1,25 +1,21 @@
 #!/bin/sh
 
-## Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+# install tools
+sudo apt install wget curl nano git android-tools btop htop lynx
 
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
+# install nodejs lts
 
-# Download and install Node.js:
-nvm install --lts
-
-# Verify the Node.js version:
-node -v # Should print "v24.14.1".
-
-# Verify npm version:
-npm -v # Should print "11.11.0".
+sudo apt-get install -y curl
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v
 npm install -g http-server
 
 # disable apt pager
 echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 
 # install weathr rust app
+sudo apt install rustup
 rustup toolchain install stable
 cargo install weathr
 sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr

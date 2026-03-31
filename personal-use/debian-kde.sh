@@ -14,17 +14,11 @@ Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
 EOF
 
-echo '
-Package: *
-Pin: origin packages.mozilla.org
-Pin-Priority: 1000
-' | sudo tee /etc/apt/preferences.d/mozilla
-
 sudo apt update
 
 
 # Install required tools
-sudo apt install vlc firefox keepassxc zram-tools partitionmanager btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder rustup linux-headers-$(uname -r) build-essential libayatana-appindicator3-1 -y
+sudo apt install vlc firefox android-tools keepassxc zram-tools partitionmanager btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 linux-headers-$(uname -r) build-essential libayatana-appindicator3-1 -y
 
 # install protonvpn
 wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
@@ -37,7 +31,8 @@ GRUB_DEFAULT=0
 GRUB_TIMEOUT=-1
 GRUB_DISTRIBUTOR='Debian'
 #GRUB_CMDLINE_LINUX_DEFAULT='quiet splash'
-GRUB_CMDLINE_LINUX_DEFAULT='kvm.enable_virt_at_load=0'
+#GRUB_CMDLINE_LINUX_DEFAULT='kvm.enable_virt_at_load=0'
+GRUB_CMDLINE_LINUX_DEFAULT=""
 GRUB_CMDLINE_LINUX=""
 GRUB_BACKGROUND="/home/alif/1.png"
 GRUB_DISABLE_OS_PROBER=false
@@ -57,7 +52,7 @@ sudo apt install ./*.deb
 # add gh desktop repo
 sudo curl https://gpg.polrivero.com/public.key | sudo gpg --dearmor -o /usr/share/keyrings/polrivero.gpg
 echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/polrivero.gpg] https://deb.github-desktop.polrivero.com/ stable main" | sudo tee /etc/apt/sources.list.d/github-desktop-plus.list
-sudo apt install github-desktop-plus
+sudo apt update && sudo apt install github-desktop-plus -y
 
 # install vmware-workstation
 sudo ./VM*
@@ -77,7 +72,7 @@ sudo systemctl stop named
 sudo systemctl disable named
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved
-cd /home/alif/D_DRIVE/Applications/AdGuardHome
+cd /home/alif/Applications/AdGuardHome
 sudo ./AdGuardHome -s install
 sudo systemctl start AdGuardHome
 
@@ -118,52 +113,8 @@ sudo apt purge libreoffice* thunderbird gimp konqueror juk dragonplayer kmail ak
 
 # install nodejs lts
 
-# Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
-
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
-
-# Download and install Node.js:
-nvm install --lts
-
-# Verify the Node.js version:
-node -v # Should print "v24.14.1".
-
-# Verify npm version:
-npm -v # Should print "11.11.0".
+sudo apt-get install -y curl
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v
 npm install -g http-server
-
-# install weathr rust app
-rustup toolchain install stable
-cargo install weathr
-sudo ln -s /home/alif/.cargo/bin/weathr /usr/bin/weathr
-mkdir -p /home/alif/.config/weathr/
-tee /home/alif/.config/weathr/config.toml > /dev/null <<EOF
-# Hide the HUD (Heads Up Display) with weather details
-hide_hud = false
-
-# Run silently without startup messages (errors still shown)
-silent = false
-
-[location]
-# Location coordinates (overridden if auto = true)
-latitude = -3.6486
-longitude = 103.771
-
-# Auto-detect location via IP (defaults to true if config missing)
-auto = false
-
-# Hide the location name in the UI
-hide = false
-
-[units]
-# Temperature unit: "celsius" or "fahrenheit"
-temperature = "celsius"
-
-# Wind speed unit: "kmh", "ms", "mph", or "kn"
-wind_speed = "kmh"
-
-# Precipitation unit: "mm" or "inch"
-precipitation = "mm"
-EOF

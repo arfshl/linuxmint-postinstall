@@ -6,26 +6,17 @@
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 # install package
-sudo dnf install libayatana-appindicator-gtk3 keepassxc firefox vlc btop htop git java-25-openjdk-headless rustup kernel-devel-$(uname -r) kernel-headers-$(uname -r) -y
+sudo dnf install android-tools libayatana-appindicator-gtk3 keepassxc firefox vlc btop htop git java-25-openjdk-headless rustup kernel-devel-$(uname -r) kernel-headers-$(uname -r) -y
 sudo dnf install @development-tools
 
 # mark as user installed
 sudo dnf mark user java-25-openjdk-headless -y
 
-# Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
-
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
-
-# Download and install Node.js:
-nvm install --lts
-
-# Verify the Node.js version:
-node -v # Should print "v24.14.1".
-
-# Verify npm version:
-npm -v # Should print "11.11.0".
+# install nodejs lts
+sudo yum install -y curl
+curl -fsSL https://rpm.nodesource.com/setup_24.x | sudo bash -
+sudo yum install -y nodejs
+node -v
 npm install -g http-server
 
 # install protonvpn
