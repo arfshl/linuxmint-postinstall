@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # install tools
-sudo apt install wget curl nano git android-tools btop htop lynx
+sudo apt install wget curl nano git adb btop htop lynx
 
 # install nodejs lts
 

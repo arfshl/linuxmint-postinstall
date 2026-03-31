@@ -54,7 +54,7 @@ EOF
 echo 'Done'
 
 # Install required tools
-sudo apt install vlc firefox keepassxc android-tools zram-tools partitionmanager btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder linux-headers-$(uname -r) build-essential libayatana-appindicator3-1 -y
+sudo apt install vlc firefox keepassxc adb zram-tools partitionmanager btop htop lynx brasero default-jre wget curl nano git systemd-timesyncd ufw gufw apache2 bind9 simplescreenrecorder linux-headers-$(uname -r) build-essential libayatana-appindicator3-1 -y
 
 # install protonvpn
 wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb && sudo dpkg -i ./protonvpn-stable-release_*_all.deb && sudo rm protonvpn-stable-release_*_all.deb && sudo apt update && sudo apt install proton-vpn-gnome-desktop -y
