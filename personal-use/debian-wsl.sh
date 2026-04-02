@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # install tools
-sudo apt install wget curl nano git adb btop htop lynx bind9 apache2
+sudo apt install wget curl nano git adb btop htop lynx bind9 apache2 -y
 
 # install nodejs lts
 
