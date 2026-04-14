@@ -14,6 +14,7 @@ Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
 EOF
 
+sudo sed -i 's|main non-free-firmware|main contrib non-free non-free-firmware|' /etc/apt/sources.list
 sudo apt update
 
 
