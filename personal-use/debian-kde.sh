@@ -82,6 +82,7 @@ sudo tee /etc/NetworkManager/conf.d/nodns.conf > /dev/null <<EOF
 [main]
 dns=none
 EOF
+sudo systemctl restart NetworkManager
 
 # rewrite /etc/resolv.conf
 sudo mv /etc/resolv.conf /etc/resolv.conf.bak

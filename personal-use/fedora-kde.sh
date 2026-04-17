@@ -6,17 +6,40 @@
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 # install package
-sudo dnf install android-tools libayatana-appindicator-gtk3 keepassxc firefox vlc btop htop git java-25-openjdk-headless rustup kernel-devel-$(uname -r) kernel-headers-$(uname -r) -y
+sudo dnf install android-tools libayatana-appindicator-gtk3 keepassxc firefox kate vlc btop htop git java-25-openjdk-headless torbrowser-launcher dnsutils httpd kernel-devel kernel-headers -y
 sudo dnf install @development-tools
 
 # mark as user installed
 sudo dnf mark user java-25-openjdk-headless -y
 
+# generate custom grub config (disable os-prober, block kvm module, amoled black grub wallpaper, and enable verbose boot)
+sudo mv /etc/default/grub /etc/default/grub.bak
+sudo tee /etc/default/grub > /dev/null <<EOF
+GRUB_TIMEOUT=-1
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+#GRUB_CMDLINE_LINUX="rhgb quiet"
+GRUB_CMDLINE_LINUX=""
+GRUB_DISABLE_RECOVERY="true"
+GRUB_ENABLE_BLSCFG=true
+EOF
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
 # install nodejs lts
-sudo yum install -y curl
-curl -fsSL https://rpm.nodesource.com/setup_24.x | sudo bash -
-sudo yum install -y nodejs
-node -v
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+# Download and install Node.js:
+nvm install lts/*
+# Verify the Node.js version:
+node -v # Should print "v24.15.0".
+# Download and install Yarn:
+corepack enable yarn
+# Verify Yarn version:
+yarn -v
 npm install -g http-server
 
 # install protonvpn
@@ -44,8 +67,15 @@ sudo systemctl start AdGuardHome
 sudo mv /etc/resolv.conf /etc/resolv.conf.bak
 echo 'nameserver 127.0.0.1' | sudo tee -a /etc/resolv.conf
 
+# disable networkmanager management for /etc/resolv.conf
+sudo tee /etc/NetworkManager/conf.d/nodns.conf > /dev/null <<EOF
+[main]
+dns=none
+EOF
+sudo systemctl restart NetworkManager
+
 # remove
-sudo dnf remove thunderbird libreoffice* -y
+sudo dnf remove thunderbird libreoffice* dragonplayer elisa akregator kmahjongg kmines kwrite kpatience korganizer neochat kmail kpat -y
 
 # allowport for localsend
 sudo firewall-cmd --permanent --add-port=53317/tcp

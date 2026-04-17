@@ -121,6 +121,13 @@ sudo systemctl start AdGuardHome
 sudo mv /etc/resolv.conf /etc/resolv.conf.bak
 echo 'nameserver 127.0.0.1' | sudo tee -a /etc/resolv.conf
 
+# disable networkmanager management for /etc/resolv.conf
+sudo tee /etc/NetworkManager/conf.d/nodns.conf > /dev/null <<EOF
+[main]
+dns=none
+EOF
+sudo systemctl restart NetworkManager
+
 # Enable UFW, Profile default, Deny incoming, Allow outgoing
 echo "Updating Firewall..."
 sudo apt install ufw gufw -y
