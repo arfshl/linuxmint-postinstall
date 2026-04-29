@@ -138,6 +138,8 @@ sudo ufw enable
 sudo ufw status verbose
 sudo ufw allow 53317/tcp
 sudo ufw allow 53317/udp
+sudo ufw allow 21118/tcp
+sudo ufw allow 21118/udp
 
 # Enable zram with lz4 compression algorithm
 echo "Installing zram-tools..."
@@ -154,9 +156,16 @@ sudo fallocate -l 4G /swapfile1 && sudo chmod 600 /swapfile1 && sudo mkswap /swa
 sudo apt purge libreoffice* thunderbird gimp konqueror juk dragonplayer kmail akregator -y
 
 # install nodejs lts
-
-sudo apt-get install -y curl
-curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-sudo apt-get install -y nodejs
-node -v
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+# Download and install Node.js:
+nvm install lts/*
+# Verify the Node.js version:
+node -v # Should print "v24.15.0".
+# Download and install Yarn:
+corepack enable yarn
+# Verify Yarn version:
+yarn -v
 npm install -g http-server

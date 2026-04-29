@@ -80,6 +80,8 @@ sudo dnf remove thunderbird libreoffice* dragonplayer elisa akregator kmahjongg 
 # allowport for localsend
 sudo firewall-cmd --permanent --add-port=53317/tcp
 sudo firewall-cmd --permanent --add-port=53317/udp
+sudo firewall-cmd --permanent --add-port=21118/tcp
+sudo firewall-cmd --permanent --add-port=21118/udp
 sudo firewall-cmd --reload
 
 # install weathr rust app

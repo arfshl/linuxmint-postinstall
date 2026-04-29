@@ -1,4 +1,4 @@
-# Linux Mint Post-Install scripts
+# Linux Post-Install scripts
 
 ## Features
 - One-click installation, Just copy-paste command on Terminal
@@ -22,15 +22,15 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
 - Linux Mint Cinnamon, Linux Mint MATE, and Linux Mint Debian Edition
 
-      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/cinnamon.sh && sh cinnamon.sh && rm cinnamon.sh
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/cinnamon.sh && sh cinnamon.sh && rm cinnamon.sh
 
 - Linux Mint XFCE
 
-      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/xfce.sh && sh xfce.sh && rm xfce.sh
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/xfce.sh && sh xfce.sh && rm xfce.sh
 
 - Kubuntu or Debian KDE, with snapd disabled and comfy tools (if you want Linux mint feelings with KDE Plasma desktop)
 
-      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/minty-kde.sh && sh minty-kde.sh && rm minty-kde.sh
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian/minty-kde.sh && sh minty-kde.sh && rm minty-kde.sh
 
 ## All Debian-based distribution, but without shortcut to desktop
 
@@ -46,7 +46,7 @@ Works on:
 - Q4OS
 - And many more!
 
-      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian.sh && sh debian.sh && rm debian.sh
+      wget https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian/debian.sh && sh debian.sh && rm debian.sh
 
 ## Enable swap manually if not enabled by default (4GB is default size)
 
