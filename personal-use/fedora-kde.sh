@@ -2,11 +2,17 @@
 # this is my personal customization for the applist
 # env is fedora spin kde
 
-# enable rpmfusion
+# enable rpmfusion and mozilla repo
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+sudo dnf makecache --refresh
+sudo dnf install rpmfusion-*-appstream-data rpmfusion-*-tainted -y
+sudo dnf config-manager addrepo --id=mozilla --set=baseurl=https://packages.mozilla.org/rpm/firefox --set=gpgkey=https://packages.mozilla.org/rpm/firefox/signing-key.gpg --set=repo_gpgcheck=0
+sudo dnf makecache --refresh
 
 # install package
-sudo dnf install android-tools libayatana-appindicator-gtk3 keepassxc firefox kate vlc btop htop git java-25-openjdk-headless torbrowser-launcher dnsutils httpd kernel-devel kernel-headers -y
+sudo dnf install android-tools libayatana-appindicator-gtk3 keepassxc firefox kate btop htop git java-25-openjdk-headless torbrowser-launcher dnsutils httpd kernel-devel kernel-headers -y
+sudo dnf install vlc vlc-plugins-freeworld ffmpeg intel-media-driver libdvdcss mesa-va-drivers-freeworld mesa-va-drivers-freeworld.i686 mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld qt5-qtwebengine-freeworld telegram-desktop --allowerasing -y
+# libva-intel-driver libva-nvidia-driver libva-nvidia-driver.{i686,x86_64}
 sudo dnf install @development-tools
 
 # mark as user installed
@@ -20,8 +26,8 @@ GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
 GRUB_DEFAULT=saved
 GRUB_DISABLE_SUBMENU=true
 GRUB_TERMINAL_OUTPUT="console"
-#GRUB_CMDLINE_LINUX="rhgb quiet"
-GRUB_CMDLINE_LINUX=""
+GRUB_CMDLINE_LINUX="rhgb quiet"
+#GRUB_CMDLINE_LINUX=""
 GRUB_DISABLE_RECOVERY="true"
 GRUB_ENABLE_BLSCFG=true
 EOF
