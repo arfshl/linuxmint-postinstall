@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # If you want Linux Mint feelings with KDE Plasma desktop, here it is
 # Installing all comfy tools that linux mint have built-in
@@ -46,12 +47,26 @@ echo "Spotify Client Installed"
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
 sudo install -d -m 0755 /etc/apt/keyrings
+sudo apt install wget
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 cat <<EOF | sudo tee /etc/apt/sources.list.d/mozilla.sources
 Types: deb
 URIs: https://packages.mozilla.org/apt
 Suites: mozilla
 Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
+
+Types: deb
+URIs: https://packages.mozilla.org/apt
+Suites: thunderbird-deb
+Components: main
+Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc 
+EOF
+
+sudo cat <<EOF > /etc/apt/preferences.d/mozilla
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1001
 EOF
 
 sudo apt update

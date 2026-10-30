@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # Updating package database
 echo "Updating package database..."
@@ -46,18 +47,26 @@ echo "Spotify Client Installed"
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
 echo "installing firefox..."
 sudo install -d -m 0755 /etc/apt/keyrings
+sudo apt install wget
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 cat <<EOF | sudo tee /etc/apt/sources.list.d/mozilla.sources
 Types: deb
 URIs: https://packages.mozilla.org/apt
 Suites: mozilla
 Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
+
+Types: deb
+URIs: https://packages.mozilla.org/apt
+Suites: thunderbird-deb
+Components: main
+Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc 
 EOF
 
-cat <<EOF | sudo tee /etc/apt/preferences.d/mozilla
+sudo cat <<EOF > /etc/apt/preferences.d/mozilla
 Package: *
 Pin: origin packages.mozilla.org
-Pin-Priority: 1000
+Pin-Priority: 1001
 EOF
 
 sudo apt update

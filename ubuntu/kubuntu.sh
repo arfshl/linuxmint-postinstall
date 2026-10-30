@@ -1,13 +1,6 @@
 #!/bin/sh
 
-# If you want Linux Mint feelings with KDE Plasma desktop, here it is
-# Installing all comfy tools that linux mint have built-in
-# snapd is banned and disabled
-# Updating package database
-
-# disabling snapd
-echo "Disabling snapd"
-curl -fssL https://raw.githubusercontent.com/arfshl/nosnap/main/nosnap.sh | sudo bash
+set -e
 
 echo "Updating package database..."
 sudo apt update

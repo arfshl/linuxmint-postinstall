@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Updating package database
 echo "Updating package database..."
 sudo apt update

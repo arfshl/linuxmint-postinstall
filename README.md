@@ -23,8 +23,6 @@ Looks for [Windows version](https://github.com/arfshl/windows-postinstall)?
 ## Usage
 Just copy-paste the commands to your terminal and execute. The script will automatically downloaded and executed
 
-#### Linux Mint
-
 - Linux Mint Cinnamon, Linux Mint MATE, and Linux Mint Debian Edition
 
       curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/cinnamon.sh | bash
@@ -33,20 +31,28 @@ Just copy-paste the commands to your terminal and execute. The script will autom
 
       curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/xfce.sh | bash
 
-#### Ubuntu (with snap blocked ofcourse)
+- Ubuntu (GNOME, MATE, XFCE, Cinnamon, Budgie, Unity)
 
-- Kubuntu 
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/ubuntu.sh | bash
+
+- Ubuntu (GNOME, MATE, XFCE, Cinnamon, Budgie, Unity) Nosnap
+
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/ubuntu-nosnap.sh | bash
+
+- Kubuntu, Lubuntu
 
       curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/kubuntu.sh | bash
 
-#### Debian
+- Kubuntu, Lubuntu Nosnap
+
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/kubuntu-nosnap.sh | bash
 
 - Debian KDE
   
       curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian/debian-kde.sh | bash
 
 
-#### All Debian-based distribution, but without shortcut to desktop
+#### Other Debian-based distribution, but without shortcut to desktop (Generic script without distro specific patch)
 
 Works on:
 - All Ubuntu and Debian flavor and desktop
