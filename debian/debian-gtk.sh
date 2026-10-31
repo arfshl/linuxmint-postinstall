@@ -1,22 +1,23 @@
 #!/bin/sh
 set -e
 
-# If you want Linux Mint feelings with KDE Plasma desktop, here it is
-# Installing all comfy tools that linux mint have built-in
 # Updating package database
+echo "Updating package database..."
+sudo apt update
 
 # Install Google Chrome
 echo "Installing Google Chrome..."
+sudo install -d -m 0755 /etc/apt/keyrings
+sudo curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
+echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 sudo apt update
-mkdir -p $HOME/pkgtmp
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P $HOME/pkgtmp
-sudo apt install $HOME/pkgtmp/google-chrome-stable_current_amd64.deb -y
+sudo apt install -y google-chrome-stable
 xdg-settings set default-web-browser google-chrome.desktop
-rm $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
 echo "Google Chrome Installed"
 
 # Install OnlyOffice
 echo "Installing OnlyOffice as Microsoft Office replacement..."
+mkdir -p $HOME/pkgtmp
 wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -P $HOME/pkgtmp
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
 sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
@@ -32,8 +33,7 @@ xdg-mime default onlyoffice-desktopeditors.desktop text/csv
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.presentationml.presentation
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint.presentation.macroEnabled.12
-rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
-rmdir $HOME/pkgtmp/
+rm -rf $HOME/pkgtmp/
 echo "OnlyOffice Installed"
 
 # Install spotify-client
@@ -46,24 +46,19 @@ chmod -R 755 $HOME/Desktop/
 echo "Spotify Client Installed"
 
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
+echo "installing firefox..."
 sudo install -d -m 0755 /etc/apt/keyrings
 sudo apt install wget
 wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 cat <<EOF | sudo tee /etc/apt/sources.list.d/mozilla.sources
 Types: deb
 URIs: https://packages.mozilla.org/apt
-Suites: mozilla
+Suites: mozilla thunderbird-deb
 Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
-
-Types: deb
-URIs: https://packages.mozilla.org/apt
-Suites: thunderbird-deb
-Components: main
-Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc 
 EOF
 
-sudo cat <<EOF > /etc/apt/preferences.d/mozilla
+sudo tee <<EOF > /etc/apt/preferences.d/mozilla
 Package: *
 Pin: origin packages.mozilla.org
 Pin-Priority: 1001
@@ -74,7 +69,8 @@ echo "Installing System Tools..."
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer kamoso kclock mtp-tools firefox -y
+sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks mtp-tools firefox flatpak gnome-software gnome-software-plugin-flatpak winbind -y
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo apt purge firefox-esr -y
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
@@ -132,4 +128,4 @@ sudo systemctl restart systemd-zram-setup@zram0.service
 echo 'Binary::apt::Pager "false";' | sudo tee -a  /etc/apt/apt.conf.d/99nopager
 
 # Done Process
-echo "Welcome to Debian KDE!"
+echo "Welcome to Debian!"

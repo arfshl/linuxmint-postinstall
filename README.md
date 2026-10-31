@@ -1,17 +1,17 @@
-# Linux Post-Install scripts
-This project aims to make Linux workstation setup faster, but also more secure for both home and and education usage
+# Linux Mint Post-Install scripts
+Post-install script for Linux Mint and Debian/Ubuntu based distro. My recommendation for both home and education usage replacing Windows
 
 Looks for [Windows version](https://github.com/arfshl/windows-postinstall)?
 
 ## Features
 - One-click installation, Just copy-paste command on Terminal
 - Automates installation of daily-usage apps and Microsoft fonts
-- Adding App Shortcut to Desktop for easy access
-- Enable Firewall
-- Enable [zram](https://wiki.archlinux.org/title/Zram)
-- Setup DNS over TLS with systemd-resolved, using Cloudflare and Google DNS
+- Adding App Shortcut to Desktop for easy access (Linux Mint only)
+- Enable Firewall (Block incoming connection by default)
+- Enable [zram](https://wiki.archlinux.org/title/Zram) with `zstd` compression
+- Setup DNS over TLS with systemd-resolved, using Cloudflare and ControlD Unfiltered
 
-## Auto-Installed Apps
+## Pre-Installed Apps
 - Google Chrome
 - [OnlyOffice](https://www.onlyoffice.com/download-desktop.aspx) as Microsoft Office replacement, but you can still access Office Online or Google Workspaces via web browser
 - VLC Media Player
@@ -19,54 +19,53 @@ Looks for [Windows version](https://github.com/arfshl/windows-postinstall)?
 - GNOME Cheese/Kamoso (Camera App)
 - GNOME Clocks/KClock (Clock App)
 - Microsoft Corefonts (with `ttf-mscorefonts-installer` packages)
+- Flatpak and GNOME Software/KDE Discover (Script for Ubuntu flavor with Nosnap will get their snapd replaced with flatpak)
+- software-properties-common and software-properties-gtk (Ubuntu only)
+- Winbind for Active Directory
 
 ## Usage
 Just copy-paste the commands to your terminal and execute. The script will automatically downloaded and executed
 
 - Linux Mint Cinnamon, Linux Mint MATE, and Linux Mint Debian Edition
 
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/cinnamon.sh | bash
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/cinnamon.sh | sudo bash
   
 - Linux Mint XFCE
 
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/xfce.sh | bash
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/linuxmint/xfce.sh | sudo bash
 
-- Ubuntu (GNOME, MATE, XFCE, Cinnamon, Budgie, Unity)
+- Ubuntu Flavor with GTK (Ubuntu, Xubuntu, Ubuntu MATE, Cinnamon, Budgie, Unity)
 
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/ubuntu.sh | bash
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/ubuntu.sh | sudo bash
 
-- Ubuntu (GNOME, MATE, XFCE, Cinnamon, Budgie, Unity) Nosnap
+- Ubuntu Flavor with GTK (Ubuntu, Xubuntu, Ubuntu MATE, Cinnamon, Budgie, Unity) Nosnap
 
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/ubuntu-nosnap.sh | bash
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/ubuntu-nosnap.sh | sudo bash
 
-- Kubuntu, Lubuntu
+- Ubuntu Flavor with Qt (Kubuntu, Lubuntu, KDE Neon)
 
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/kubuntu.sh | bash
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/kubuntu.sh | sudo bash
 
-- Kubuntu, Lubuntu Nosnap
+- Ubuntu Flavor with Qt (Kubuntu, Lubuntu, KDE Neon) Nosnap
 
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/kubuntu-nosnap.sh | bash
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/ubuntu/kubuntu-nosnap.sh | sudo bash
 
-- Debian KDE
-  
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian/debian-kde.sh | bash
-
-
-#### Other Debian-based distribution, but without shortcut to desktop (Generic script without distro specific patch)
-
-Works on:
-- All Ubuntu and Debian flavor and desktop
+#### Other Ubuntu/Debian-based distribution with GTK
+- Debian GNOME, XFCE, Cinnamon, LXDE
 - Zorin OS
 - Pop! OS
 - Linux Lite
-- MX Linux [Enable systemd first!](https://mxlinux.org/wiki/system/systemd/)
+- MX Linux [Enable systemd first!](https://mxlinux.org/wiki/system/systemd)
 - Elementary OS
-- KDE Neon
 - AnduinOS
-- Q4OS
-- And many more!
+  
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian/debian-gtk.sh | sudo bash
 
-      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian/debian.sh | bash
+#### Other Ubuntu/Debian-based distribution with Qt 
+- Debian KDE, LXQt
+- Q4OS
+
+      curl -fssL https://raw.githubusercontent.com/arfshl/linuxmint-postinstall/refs/heads/main/debian/debian-qt.sh | sudo bash
 
 ## Enable swap manually if not enabled by default (4GB is default size)
 

@@ -8,17 +8,18 @@ sudo apt update
 
 # Install Google Chrome
 echo "Installing Google Chrome..."
-mkdir -p $HOME/pkgtmp
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P $HOME/pkgtmp
-sudo apt install $HOME/pkgtmp/google-chrome-stable_current_amd64.deb -y
-xdg-settings set default-web-browser google-chrome.desktop
-rm $HOME/pkgtmp/google-chrome-stable_current_amd64.deb
+sudo install -d -m 0755 /etc/apt/keyrings
+sudo curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
+echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install -y google-chrome-stable
 ln -s /usr/share/applications/google-chrome.desktop $HOME/Desktop/google-chrome.desktop
 chmod -R 755 $HOME/Desktop/
 echo "Google Chrome Installed"
 
 # Install OnlyOffice
 echo "Installing OnlyOffice as Microsoft Office replacement..."
+mkdir -p $HOME/pkgtmp
 wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb -P $HOME/pkgtmp
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
 sudo apt install $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb -y
@@ -34,8 +35,7 @@ xdg-mime default onlyoffice-desktopeditors.desktop text/csv
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.presentationml.presentation
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint
 xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.ms-powerpoint.presentation.macroEnabled.12
-rm $HOME/pkgtmp/onlyoffice-desktopeditors_amd64.deb
-rmdir $HOME/pkgtmp/
+rm -rf $HOME/pkgtmp/
 ln -s /usr/share/applications/onlyoffice-desktopeditors.desktop $HOME/Desktop/onlyoffice-desktopeditors.desktop
 chmod -R 755 $HOME/Desktop/
 echo "OnlyOffice Installed"
@@ -47,13 +47,32 @@ ln -s /usr/share/applications/spotify.desktop $HOME/Desktop/spotify.desktop
 chmod -R 755 $HOME/Desktop/
 echo "Spotify Client Installed"
 
+# Add mozilla repos
+sudo install -d -m 0755 /etc/apt/keyrings
+sudo apt install wget
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+cat <<EOF | sudo tee /etc/apt/sources.list.d/mozilla.sources
+Types: deb
+URIs: https://packages.mozilla.org/apt
+Suites: mozilla thunderbird-deb
+Components: main
+Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
+EOF
+
+sudo tee <<EOF > /etc/apt/preferences.d/mozilla
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1001
+EOF
+
 # Install VLC, UFW, GUFW, systemd-resolved, ttf-mscorefonts firefox
 echo "Installing System Tools..."
 echo "Installing VLC..."
 echo "Installing Microsoft fonts..."
 echo "Updating Mozilla Firefox..."
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-sudo apt install vlc ttf-mscorefonts-installer cheese gnome-system-monitor gnome-clocks firefox software-properties-common software-properties-gtk yaru-cinnamon-theme-gtk yaru-cinnamon-theme-icon ubuntucinnamon-wallpapers yaru-theme-sound ubuntucinnamon-wallpapers-$(grep '^UBUNTU_CODENAME=' /etc/os-release | cut -d'=' -f2 | tr -d '"') -y
+sudo apt install vlc ttf-mscorefonts-installer cheese gnome-clocks firefox winbind flatpak software-properties-common software-properties-gtk yaru-cinnamon-theme-gtk yaru-cinnamon-theme-icon ubuntucinnamon-wallpapers yaru-theme-sound -y
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 xdg-mime default vlc.desktop audio/mpeg
